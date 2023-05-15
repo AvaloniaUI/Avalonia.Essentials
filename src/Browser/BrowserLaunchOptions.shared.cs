@@ -1,6 +1,6 @@
 #nullable enable
 using System;
-using Microsoft.Maui.Graphics;
+using Microsoft.Maui.Essentials;
 
 namespace Microsoft.Maui.ApplicationModel
 {

@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.Maui.Graphics;
+using Microsoft.Maui.Essentials;
 using Microsoft.Maui.Storage;
 
 namespace Microsoft.Maui.ApplicationModel.DataTransfer
@@ -189,7 +189,7 @@ namespace Microsoft.Maui.ApplicationModel.DataTransfer
 		/// Gets or sets the source rectangle to display the iOS share user interface from.
 		/// </summary>
 		/// <remarks>This functionality is only available on iOS on an iPad.</remarks>
-		public Rect PresentationSourceBounds { get; set; } = Rect.Zero;
+		public Rect PresentationSourceBounds { get; set; }
 	}
 
 	/// <summary>

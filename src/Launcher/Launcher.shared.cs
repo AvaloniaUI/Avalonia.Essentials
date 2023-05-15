@@ -1,7 +1,7 @@
 #nullable enable
 using System;
 using System.Threading.Tasks;
-using Microsoft.Maui.Graphics;
+using Microsoft.Maui.Essentials;
 using Microsoft.Maui.Storage;
 
 namespace Microsoft.Maui.ApplicationModel
@@ -258,6 +258,6 @@ namespace Microsoft.Maui.ApplicationModel
 		/// Gets or sets the source rectangle to display the Share UI from.
 		/// </summary>
 		/// <remarks>This only has effect on iPadOS.</remarks>
-		public Rect PresentationSourceBounds { get; set; } = Rect.Zero;
+		public Rect PresentationSourceBounds { get; set; }
 	}
 }
