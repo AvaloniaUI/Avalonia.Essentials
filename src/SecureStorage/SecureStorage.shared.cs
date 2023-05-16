@@ -202,7 +202,7 @@ namespace Microsoft.Maui.Storage
 
 	partial class SecureStorageImplementation
 	{
-#if !NETSTANDARD && PLATFORM
+#if (NETSTANDARD || !PLATFORM) || NET6_0_OR_GREATER
 		// Special Alias that is only used for Secure Storage. All others should use: Preferences.GetPrivatePreferencesSharedName
 		internal static readonly string Alias = Preferences.GetPrivatePreferencesSharedName("preferences");
 #endif

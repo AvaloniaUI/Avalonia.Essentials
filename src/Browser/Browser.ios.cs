@@ -2,7 +2,6 @@
 using System;
 using System.Threading.Tasks;
 using Foundation;
-using Microsoft.Maui.Graphics.Platform;
 using ObjCRuntime;
 using SafariServices;
 using UIKit;

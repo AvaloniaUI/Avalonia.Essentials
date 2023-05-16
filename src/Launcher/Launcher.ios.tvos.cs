@@ -3,8 +3,7 @@ using System.Threading.Tasks;
 using CoreGraphics;
 using Foundation;
 using Microsoft.Maui.Devices;
-using Microsoft.Maui.Graphics;
-using Microsoft.Maui.Graphics.Platform;
+using Microsoft.Maui.Essentials;
 using UIKit;
 
 namespace Microsoft.Maui.ApplicationModel

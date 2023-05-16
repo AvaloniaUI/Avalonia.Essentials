@@ -3,8 +3,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Foundation;
 using LinkPresentation;
-using Microsoft.Maui.Graphics;
-using Microsoft.Maui.Graphics.Platform;
+using Microsoft.Maui.Essentials;
 using UIKit;
 
 namespace Microsoft.Maui.ApplicationModel.DataTransfer
