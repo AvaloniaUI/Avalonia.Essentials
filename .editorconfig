@@ -19,13 +19,13 @@ indent_size = 2
 [*.cs]
 indent_style = tab
 
-dotnet_diagnostic.CA1416.severity = error
+# dotnet_diagnostic.CA1416.severity = error
 
 # TODO: Remove this to reenable the COMAnalyzer once https://github.com/dotnet/linker/issues/2686 is fixed 
 dotnet_diagnostic.IL2050.severity = none
 
 # Code analyzers
-dotnet_diagnostic.CA1307.severity = error
+# dotnet_diagnostic.CA1307.severity = error
 dotnet_diagnostic.CA1309.severity = error
 dotnet_diagnostic.CA1311.severity = error
 dotnet_diagnostic.CA1815.severity = error

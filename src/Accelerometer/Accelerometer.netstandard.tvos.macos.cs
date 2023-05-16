@@ -2,15 +2,15 @@ using Microsoft.Maui.ApplicationModel;
 
 namespace Microsoft.Maui.Devices.Sensors
 {
-	partial class AccelerometerImplementation
+	class NotImplementedAccelerometerImplementation : AccelerometerImplementationBase
 	{
-		public bool IsSupported =>
+		public override bool IsSupported =>
 			throw ExceptionUtils.NotSupportedOrImplementedException;
 
-		void PlatformStart(SensorSpeed sensorSpeed) =>
+		protected override void PlatformStart(SensorSpeed sensorSpeed) =>
 			throw ExceptionUtils.NotSupportedOrImplementedException;
 
-		void PlatformStop() =>
+		protected override void PlatformStop() =>
 			throw ExceptionUtils.NotSupportedOrImplementedException;
 	}
 }

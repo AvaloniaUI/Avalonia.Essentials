@@ -5,17 +5,17 @@ using Microsoft.Maui.ApplicationModel;
 
 namespace Microsoft.Maui.Devices.Sensors
 {
-	partial class AccelerometerImplementation
+	partial class AccelerometerImplementation : AccelerometerImplementationBase
 	{
 		static CMMotionManager? motionManager;
 
 		static CMMotionManager MotionManager =>
 			motionManager ??= new CMMotionManager();
 
-		public bool IsSupported =>
+		public override bool IsSupported =>
 			MotionManager.AccelerometerAvailable;
 
-		void PlatformStart(SensorSpeed sensorSpeed)
+		protected override void PlatformStart(SensorSpeed sensorSpeed)
 		{
 			MotionManager.AccelerometerUpdateInterval = sensorSpeed.ToPlatform();
 			MotionManager.StartAccelerometerUpdates(NSOperationQueue.CurrentQueue ?? new NSOperationQueue(), DataUpdated);
@@ -33,7 +33,7 @@ namespace Microsoft.Maui.Devices.Sensors
 			OnChanged(accelData);
 		}
 
-		void PlatformStop() =>
+		protected override void PlatformStop() =>
 			MotionManager.StopAccelerometerUpdates();
 	}
 }

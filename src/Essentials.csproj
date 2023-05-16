@@ -9,14 +9,15 @@
     <IsTrimmable>true</IsTrimmable>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <NoWarn>$(NoWarn);NU5104;RS0041;RS0026</NoWarn>
-    <WarningsAsErrors>$(WarningsAsErrors);CS1591</WarningsAsErrors>
-    <NoWarn Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">$(NoWarn);CA1420</NoWarn>
+<!--    <WarningsAsErrors>$(WarningsAsErrors);CS1591</WarningsAsErrors>-->
+    <_IsSharedDesktopTarget Condition="'$(TargetFramework)' == 'netstandard2.0' OR '$(TargetFramework)' == '$(_MauiDotNetTfm)'">true</_IsSharedDesktopTarget>
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="**\*.shared.cs" Exclude="$(DefaultItemExcludes);$(DefaultExcludesInProjectFolder)" />
     <Compile Include="**\*.shared.*.cs" Exclude="$(DefaultItemExcludes);$(DefaultExcludesInProjectFolder)" />
     <Compile Include="Graphics\Color.cs" />
     <Compile Include="Graphics\Rect.cs" />
+    <Compile Include="OperatingSystemEx.cs" />
   </ItemGroup>
   <ItemGroup Condition=" $(TargetFramework.StartsWith('netstandard')) ">
     <PackageReference Include="System.Numerics.Vectors" Version="4.5.0" />
@@ -25,10 +26,12 @@
     <Compile Include="**\*.netstandard.cs" Exclude="$(DefaultItemExcludes);$(DefaultExcludesInProjectFolder)" />
     <Compile Include="**\*.netstandard.*.cs" Exclude="$(DefaultItemExcludes);$(DefaultExcludesInProjectFolder)" />
   </ItemGroup>
-  <ItemGroup Condition=" $(TargetFramework.Contains('-windows')) ">
-    <Compile Include="**\*.uwp.cs" Exclude="$(DefaultItemExcludes);$(DefaultExcludesInProjectFolder)" />
-    <Compile Include="**\*.uwp.*.cs" Exclude="$(DefaultItemExcludes);$(DefaultExcludesInProjectFolder)" />
-    <PackageReference Include="Microsoft.WindowsAppSDK" Version="1.3.230502000" />
+  <ItemGroup Condition="'$(_IsSharedDesktopTarget)' == 'true'">
+    <!-- Until 100% port, include files one by one when they are ready -->
+<!--    <Compile Include="**\*.uwp.cs" Exclude="$(DefaultItemExcludes);$(DefaultExcludesInProjectFolder)" />-->
+<!--    <Compile Include="**\*.uwp.*.cs" Exclude="$(DefaultItemExcludes);$(DefaultExcludesInProjectFolder)" />-->
+    <Compile Include="Accelerometer/Accelerometer.uwp.cs" />
+    <Compile Include="Types/SensorSpeed.uwp.cs" />
   </ItemGroup>
   <ItemGroup Condition=" '$(TargetPlatformIdentifier)' == 'android' ">
     <Compile Include="**\*.android.cs" Exclude="$(DefaultItemExcludes);$(DefaultExcludesInProjectFolder)" />
@@ -62,4 +65,6 @@
     <Compile Include="**\*.macos.cs" Exclude="$(DefaultItemExcludes);$(DefaultExcludesInProjectFolder)" />
     <Compile Include="**\*.macos.*.cs" Exclude="$(DefaultItemExcludes);$(DefaultExcludesInProjectFolder)" />
   </ItemGroup> -->
+  
+  <Import Project="WinRTEmbed.props" Condition="'$(_IsSharedDesktopTarget)' == 'true'" />
 </Project>

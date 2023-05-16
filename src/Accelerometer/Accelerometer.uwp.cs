@@ -3,7 +3,7 @@ using WindowsAccelerometer = Windows.Devices.Sensors.Accelerometer;
 
 namespace Microsoft.Maui.Devices.Sensors
 {
-	partial class AccelerometerImplementation
+	partial class WinAccelerometerImplementation : AccelerometerImplementationBase
 	{
 		// keep around a reference so we can stop this same instance
 		WindowsAccelerometer sensor;
@@ -11,10 +11,10 @@ namespace Microsoft.Maui.Devices.Sensors
 		internal static WindowsAccelerometer DefaultSensor =>
 			WindowsAccelerometer.GetDefault();
 
-		public bool IsSupported =>
+		public override bool IsSupported =>
 			DefaultSensor != null;
 
-		void PlatformStart(SensorSpeed sensorSpeed)
+		protected override void PlatformStart(SensorSpeed sensorSpeed)
 		{
 			sensor = DefaultSensor;
 
@@ -31,7 +31,7 @@ namespace Microsoft.Maui.Devices.Sensors
 			OnChanged(data);
 		}
 
-		void PlatformStop()
+		protected override void PlatformStop()
 		{
 			sensor.ReadingChanged -= DataUpdated;
 			sensor.ReportInterval = 0;

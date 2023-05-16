@@ -6,7 +6,7 @@ using Android.Hardware;
 
 namespace Microsoft.Maui.Devices.Sensors
 {
-	partial class AccelerometerImplementation
+	partial class AccelerometerImplementation : AccelerometerImplementationBase
 	{
 		static SensorManager? _sensorManager;
 		static Sensor? _accelerometer;
@@ -17,11 +17,11 @@ namespace Microsoft.Maui.Devices.Sensors
 		static Sensor? Sensor =>
 			_accelerometer ??= SensorManager?.GetDefaultSensor(SensorType.Accelerometer);
 
-		public bool IsSupported => Sensor is not null;
+		public override bool IsSupported => Sensor is not null;
 
 		AccelerometerListener? _listener;
 
-		void PlatformStart(SensorSpeed sensorSpeed)
+		protected override void PlatformStart(SensorSpeed sensorSpeed)
 		{
 			_listener = new AccelerometerListener(OnChanged);
 
@@ -29,7 +29,7 @@ namespace Microsoft.Maui.Devices.Sensors
 			SensorManager!.RegisterListener(_listener, Sensor, delay);
 		}
 
-		void PlatformStop()
+		protected override void PlatformStop()
 		{
 			SensorManager!.UnregisterListener(_listener, Sensor);
 

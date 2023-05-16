@@ -97,10 +97,21 @@ namespace Microsoft.Maui.Devices.Sensors
 		/// Provides the default implementation for static usage of this API.
 		/// </summary>
 		public static IAccelerometer Default =>
-			defaultImplementation ??= new AccelerometerImplementation();
+			defaultImplementation ??= GetDefault();
 
 		internal static void SetDefault(IAccelerometer? implementation) =>
 			defaultImplementation = implementation;
+
+		static IAccelerometer GetDefault()
+		{
+#if IOS || ANDROID
+			return new AccelerometerImplementation();
+#else
+			return OperatingSystemEx.IsWindows10()
+				? new WinAccelerometerImplementation()
+				: new NotImplementedAccelerometerImplementation();
+#endif
+		}
 	}
 
 	/// <summary>
@@ -194,7 +205,7 @@ namespace Microsoft.Maui.Devices.Sensors
 			$"{nameof(Acceleration.Z)}: {Acceleration.Z}";
 	}
 
-	partial class AccelerometerImplementation : IAccelerometer
+	abstract class AccelerometerImplementationBase : IAccelerometer
 	{
 		const double accelerationThreshold = 169;
 
@@ -260,6 +271,10 @@ namespace Microsoft.Maui.Devices.Sensors
 				throw;
 			}
 		}
+
+		protected abstract void PlatformStop();
+		protected abstract void PlatformStart(SensorSpeed sensorSpeed);
+		public abstract bool IsSupported { get; }
 
 		internal void OnChanged(AccelerometerData reading) =>
 			OnChanged(new AccelerometerChangedEventArgs(reading));

@@ -1,0 +1,34 @@
+<Project>
+
+  <ItemGroup Condition="'$(TargetFramework)' == 'netstandard2.0'">
+    <PackageReference Include="System.Memory" Version="4.5.4" />
+    <PackageReference Include="System.Runtime.Extensions" Version="4.3.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Windows.CsWinRT" Version="2.0.2" />
+  </ItemGroup>
+
+  <PropertyGroup>
+    <EmitCompilerGeneratedFiles>true</EmitCompilerGeneratedFiles>
+    <CsWinRTEmbedded>true</CsWinRTEmbedded>
+    <CsWinRTWindowsMetadata>10.0.19041.0</CsWinRTWindowsMetadata>
+    <CsWinRTIncludes>
+      Windows.Foundation;
+      Windows.Devices.Sensors.AccelerometerReadingChangedEventArgs;
+      Windows.Devices.Sensors.Accelerometer;
+      Windows.Devices.Sensors.IAccelerometerDataThreshold;
+      Windows.Devices.Sensors.IAccelerometer;
+      Windows.Devices.Sensors.IAccelerometerReading;
+      Windows.Devices.Sensors.IAccelerometerReadingChangedEventArgs;
+      Windows.Devices.Sensors.IAccelerometerShakenEventArgs;
+      Windows.Graphics.Display.DisplayOrientations;
+    </CsWinRTIncludes>
+    <CsWinRTExcludes>
+      Windows.Foundation.Diagnostics;
+      Windows.Foundation.PropertyType;
+      Windows.Storage.BulkAccess;
+      Windows.Web.UI;
+    </CsWinRTExcludes>
+  </PropertyGroup>
+</Project>
