@@ -1,33 +1,32 @@
 <view:BasePage x:Class="Samples.View.ContactsPage"
-               xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-               xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+               xmlns="https://github.com/avaloniaui"
+               xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                xmlns:view="clr-namespace:Samples.View"
                xmlns:viewmodel="clr-namespace:Samples.ViewModel"
-               Title="Contacts">
+               Title="Contacts"
+               x:DataType="viewmodel:ContactsViewModel">
 
-    <view:BasePage.BindingContext>
+    <view:BasePage.DataContext>
         <viewmodel:ContactsViewModel />
-    </view:BasePage.BindingContext>
+    </view:BasePage.DataContext>
 
     <Grid RowDefinitions="Auto,Auto,*">
-        <Label Text="Get contacts in your device." FontAttributes="Bold" Margin="12" />
+        <TextBlock Text="Get contacts in your device." FontWeight="Bold" Margin="12" />
 
-        <StackLayout Padding="12,0,12,12" Spacing="6" Grid.Row="1">
-            <Button Command="{Binding GetContactCommand}" Text="Pick Contact" />
-            <Button Command="{Binding GetAllContactCommand}" Text="Get All Contacts" />
-        </StackLayout>
+        <StackPanel Margin="12,0,12,12" Spacing="6" Grid.Row="1">
+            <Button Command="{Binding GetContactCommand}" Content="Pick Contact" />
+            <Button Command="{Binding GetAllContactCommand}" Content="Get All Contacts" />
+        </StackPanel>
 
-        <ListView ItemsSource="{Binding ContactsList}" SelectedItem="{Binding SelectedContact}" Grid.Row="2">
-            <ListView.ItemTemplate>
+        <ListBox ItemsSource="{Binding ContactsList}" SelectedItem="{Binding SelectedContact}" Grid.Row="2">
+            <ListBox.ItemTemplate>
                 <DataTemplate>
-                    <ViewCell>
-                        <Grid Padding="12">
-                            <Label Text="{Binding DisplayName}" LineBreakMode="TailTruncation"/>
-                        </Grid>
-                    </ViewCell>
+                  <Grid Margin="12">
+                    <TextBlock Text="{Binding DisplayName}" TextTrimming="CharacterEllipsis" />
+                  </Grid>
                 </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
+            </ListBox.ItemTemplate>
+        </ListBox>
     </Grid>
 
 </view:BasePage>

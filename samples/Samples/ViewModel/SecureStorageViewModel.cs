@@ -1,6 +1,6 @@
 using System;
 using System.Windows.Input;
-using Microsoft.Maui.Controls;
+using CommunityToolkit.Mvvm.Input;
 using Microsoft.Maui.Storage;
 
 namespace Samples.ViewModel
@@ -12,10 +12,10 @@ namespace Samples.ViewModel
 
 		public SecureStorageViewModel()
 		{
-			LoadCommand = new Command(OnLoad);
-			SaveCommand = new Command(OnSave);
-			RemoveCommand = new Command(OnRemove);
-			RemoveAllCommand = new Command(OnRemoveAll);
+			LoadCommand = new RelayCommand(OnLoad);
+			SaveCommand = new RelayCommand(OnSave);
+			RemoveCommand = new RelayCommand(OnRemove);
+			RemoveAllCommand = new RelayCommand(OnRemoveAll);
 		}
 
 		public string Key

@@ -1,5 +1,5 @@
+using CommunityToolkit.Mvvm.Input;
 using Microsoft.Maui.ApplicationModel;
-using Microsoft.Maui.Controls;
 
 namespace Samples.ViewModel
 {
@@ -15,11 +15,11 @@ namespace Samples.ViewModel
 
 		public string AppTheme => AppInfo.RequestedTheme.ToString();
 
-		public Command ShowSettingsUICommand { get; }
+		public RelayCommand ShowSettingsUICommand { get; }
 
 		public AppInfoViewModel()
 		{
-			ShowSettingsUICommand = new Command(() => AppInfo.ShowSettingsUI());
+			ShowSettingsUICommand = new RelayCommand(() => AppInfo.ShowSettingsUI());
 		}
 	}
 }

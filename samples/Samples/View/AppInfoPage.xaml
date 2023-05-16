@@ -1,31 +1,32 @@
-<views:BasePage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-                xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+<views:BasePage xmlns="https://github.com/avaloniaui"
+                xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                 xmlns:views="clr-namespace:Samples.View"
                 xmlns:viewmodels="clr-namespace:Samples.ViewModel"
                 x:Class="Samples.View.AppInfoPage"
-                Title="App Info">
-    <views:BasePage.BindingContext>
+                Title="App Info"
+                x:DataType="viewmodels:AppInfoViewModel">
+    <views:BasePage.DataContext>
         <viewmodels:AppInfoViewModel />
-    </views:BasePage.BindingContext>
+    </views:BasePage.DataContext>
 
     <Grid RowDefinitions="Auto,*">
-        <Label Text="Find out about the app with ease." FontAttributes="Bold" Margin="12" />
+        <TextBlock Text="Find out about the app with ease." FontWeight="Bold" Margin="12" />
 
-        <ScrollView Grid.Row="1">
-            <StackLayout Padding="12,0,12,12" Spacing="6">
-                <Label Text="App Info:" FontAttributes="Bold" Margin="0,6,0,0" />
-                <Label Text="{Binding AppName, StringFormat='Name: {0}'}" />
-                <Label Text="{Binding AppPackageName, StringFormat='Package Name: {0}'}" />
-                <Label Text="{Binding AppTheme, StringFormat='Theme: {0}'}" />
+        <ScrollViewer Grid.Row="1">
+            <StackPanel Margin="12,0,12,12" Spacing="6">
+                <TextBlock Text="App Info:" FontWeight="Bold" Margin="0,6,0,0" />
+                <TextBlock Text="{Binding AppName, StringFormat='Name: {0}'}" />
+                <TextBlock Text="{Binding AppPackageName, StringFormat='Package Name: {0}'}" />
+                <TextBlock Text="{Binding AppTheme, StringFormat='Theme: {0}'}" />
 
-                <Label Text="Version Info:" FontAttributes="Bold" Margin="0,6,0,0" />
-                <Label Text="{Binding AppVersion, StringFormat='Version: {0}'}" />
-                <Label Text="{Binding AppBuild, StringFormat='Build: {0}'}" />
-                <Label Text="{Binding RequestedLayoutDirection, StringFormat='Layout Direction: {0}'}" />
+                <TextBlock Text="Version Info:" FontWeight="Bold" Margin="0,6,0,0" />
+                <TextBlock Text="{Binding AppVersion, StringFormat='Version: {0}'}" />
+                <TextBlock Text="{Binding AppBuild, StringFormat='Build: {0}'}" />
+                <!-- <TextBlock Text="{Binding RequestedLayoutDirection, StringFormat='Layout Direction: {0}'}" /> -->
 
-                <Button Text="Open Settings" Command="{Binding ShowSettingsUICommand}"/>
-            </StackLayout>
-        </ScrollView>
+                <Button Content="Open Settings" Command="{Binding ShowSettingsUICommand}"/>
+            </StackPanel>
+        </ScrollViewer>
     </Grid>
 
 </views:BasePage>

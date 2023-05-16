@@ -3,9 +3,8 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Windows.Input;
-using Microsoft.Maui;
+using CommunityToolkit.Mvvm.Input;
 using Microsoft.Maui.ApplicationModel.Communication;
-using Microsoft.Maui.Controls;
 using Microsoft.Maui.Storage;
 
 namespace Samples.ViewModel
@@ -24,7 +23,7 @@ namespace Samples.ViewModel
 
 		public EmailViewModel()
 		{
-			SendEmailCommand = new Command(OnSendEmail);
+			SendEmailCommand = new RelayCommand(OnSendEmail);
 		}
 
 		public ICommand SendEmailCommand { get; }

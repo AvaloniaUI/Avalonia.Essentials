@@ -1,38 +1,54 @@
-using System.Diagnostics;
+using Avalonia;
+using Avalonia.Controls.ApplicationLifetimes;
+using Avalonia.Markup.Xaml;
+using Avalonia.Threading;
 using Microsoft.Maui.ApplicationModel;
-using Microsoft.Maui.Controls;
-using Microsoft.Maui.Controls.Xaml;
 using Samples.View;
-using Device = Microsoft.Maui.Controls.Device;
-
-[assembly: XamlCompilation(XamlCompilationOptions.Compile)]
 
 namespace Samples
 {
 	public partial class App : Application
 	{
+		private static HomePage _host;
+
 		public App()
 		{
-			InitializeComponent();
+			AvaloniaXamlLoader.Load(this);
+		}
 
-			MainPage = new NavigationPage(new HomePage());
+		public override void OnFrameworkInitializationCompleted()
+		{
+			_host = new HomePage();
+			
+			if (ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
+			{
+				desktop.MainWindow = new MainWindow
+				{
+					Content = _host
+				};
+			}
+			else if (ApplicationLifetime is ISingleViewApplicationLifetime singleView)
+			{
+				singleView.MainView = _host;
+			}
+
+			base.OnFrameworkInitializationCompleted();
 		}
 
 		public static void HandleAppActions(AppAction appAction)
 		{
-			App.Current.Dispatcher.Dispatch(async () =>
+			Dispatcher.UIThread.Invoke(() =>
 			{
 				var page = appAction.Id switch
 				{
-					"battery_info" => new BatteryPage(),
-					"app_info" => new AppInfoPage(),
-					_ => default(Page)
+					"battery_info" => typeof(BatteryPage),
+					"app_info" => typeof(AppInfoPage),
+					_ => null
 				};
 
 				if (page != null)
 				{
-					await Application.Current.MainPage.Navigation.PopToRootAsync();
-					await Application.Current.MainPage.Navigation.PushAsync(page);
+					_host?.Navigate(page);
 				}
 			});
 		}

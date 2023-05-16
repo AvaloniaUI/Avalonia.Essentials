@@ -1,7 +1,7 @@
 using System;
 using System.Diagnostics;
 using System.Windows.Input;
-using Microsoft.Maui.Controls;
+using CommunityToolkit.Mvvm.Input;
 using Microsoft.Maui.Devices.Sensors;
 
 namespace Samples.ViewModel
@@ -14,8 +14,8 @@ namespace Samples.ViewModel
 
 		public BarometerViewModel()
 		{
-			StartCommand = new Command(OnStartBarometer);
-			StopCommand = new Command(OnStop);
+			StartCommand = new RelayCommand(OnStartBarometer);
+			StopCommand = new RelayCommand(OnStop);
 		}
 
 		public ICommand StartCommand { get; }

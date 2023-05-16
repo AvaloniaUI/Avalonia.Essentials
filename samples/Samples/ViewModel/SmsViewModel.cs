@@ -1,8 +1,8 @@
 using System;
 using System.Windows.Input;
+using CommunityToolkit.Mvvm.Input;
 using Microsoft.Maui.ApplicationModel;
 using Microsoft.Maui.ApplicationModel.Communication;
-using Microsoft.Maui.Controls;
 
 namespace Samples.ViewModel
 {
@@ -13,7 +13,7 @@ namespace Samples.ViewModel
 
 		public SmsViewModel()
 		{
-			SendSmsCommand = new Command(OnSendSms);
+			SendSmsCommand = new RelayCommand(OnSendSms);
 		}
 
 		public string Recipient

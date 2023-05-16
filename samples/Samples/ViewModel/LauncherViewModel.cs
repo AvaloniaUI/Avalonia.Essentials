@@ -1,8 +1,9 @@
 using System;
 using System.IO;
 using System.Windows.Input;
+using Avalonia;
+using CommunityToolkit.Mvvm.Input;
 using Microsoft.Maui.ApplicationModel;
-using Microsoft.Maui.Controls;
 using Microsoft.Maui.Storage;
 using Samples.Helpers;
 
@@ -27,11 +28,11 @@ namespace Samples.ViewModel
 
 		public LauncherViewModel()
 		{
-			LaunchCommand = new Command(OnLaunch);
-			LaunchMailCommand = new Command(OnLaunchMail);
-			LaunchBrowserCommand = new Command(OnLaunchBrowser);
-			CanLaunchCommand = new Command(CanLaunch);
-			LaunchFileCommand = new Command<Microsoft.Maui.Controls.View>(OnFileRequest);
+			LaunchCommand = new RelayCommand(OnLaunch);
+			LaunchMailCommand = new RelayCommand(OnLaunchMail);
+			LaunchBrowserCommand = new RelayCommand(OnLaunchBrowser);
+			CanLaunchCommand = new RelayCommand(CanLaunch);
+			LaunchFileCommand = new RelayCommand<Visual>(OnFileRequest);
 		}
 
 		public string FileAttachmentContents
@@ -81,7 +82,7 @@ namespace Samples.ViewModel
 			}
 		}
 
-		async void OnFileRequest(Microsoft.Maui.Controls.View element)
+		async void OnFileRequest(Visual element)
 		{
 			if (!string.IsNullOrWhiteSpace(FileAttachmentContents))
 			{
@@ -91,7 +92,7 @@ namespace Samples.ViewModel
 				File.WriteAllText(file, FileAttachmentContents);
 
 				var rect = element.GetAbsoluteBounds();
-				rect.Y += 40;
+				rect = rect with { Y = rect.Y + 40 };
 				await Launcher.OpenAsync(new OpenFileRequest
 				{
 					File = new ReadOnlyFile(file),

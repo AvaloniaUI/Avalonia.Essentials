@@ -1,5 +1,5 @@
 using System.Windows.Input;
-using Microsoft.Maui.Controls;
+using CommunityToolkit.Mvvm.Input;
 using Microsoft.Maui.Devices;
 
 namespace Samples.ViewModel
@@ -8,8 +8,8 @@ namespace Samples.ViewModel
 	{
 		public KeepScreenOnViewModel()
 		{
-			RequestActiveCommand = new Command(OnRequestActive);
-			RequestReleaseCommand = new Command(OnRequestRelease);
+			RequestActiveCommand = new RelayCommand(OnRequestActive);
+			RequestReleaseCommand = new RelayCommand(OnRequestRelease);
 		}
 
 		public bool IsActive => DeviceDisplay.KeepScreenOn;

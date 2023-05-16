@@ -1,35 +1,36 @@
-<views:BasePage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-                xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+<views:BasePage xmlns="https://github.com/avaloniaui"
+                xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                 xmlns:views="clr-namespace:Samples.View"
                 xmlns:viewmodels="clr-namespace:Samples.ViewModel"
                 x:Class="Samples.View.GeocodingPage"
-                Title="Geocoding">
-    <views:BasePage.BindingContext>
+                Title="Geocoding"
+                x:DataType="viewmodels:GeocodingViewModel">
+    <views:BasePage.DataContext>
         <viewmodels:GeocodingViewModel />
-    </views:BasePage.BindingContext>
+    </views:BasePage.DataContext>
 
     <Grid RowDefinitions="Auto,*">
-        <Label Text="Easily geocode and reverse geocoding." FontAttributes="Bold" Margin="12" />
+        <TextBlock Text="Easily geocode and reverse geocoding." FontWeight="Bold" Margin="12" />
 
-        <ScrollView Grid.Row="1">
-            <StackLayout Padding="12,0,12,12" Spacing="6">
-                <ActivityIndicator IsVisible="{Binding IsBusy}" IsRunning="{Binding IsBusy}" />
+        <ScrollViewer Grid.Row="1">
+            <StackPanel Margin="12,0,12,12" Spacing="6">
+                <ProgressBar IsVisible="{Binding IsBusy}" IsIndeterminate="{Binding IsBusy}" />
 
-                <Label Text="Geocoding:" FontAttributes="Bold" Margin="0,6,0,0" />
-                <Label Text="Latitude:" />
-                <Entry Text="{Binding Latitude}" Keyboard="Numeric" />
-                <Label Text="Longitude:" />
-                <Entry Text="{Binding Longitude}" Keyboard="Numeric" />
-                <Button Text="Detect Placemarks" Command="{Binding GetAddressCommand}" IsEnabled="{Binding IsNotBusy}" />
-                <Label Text="{Binding GeocodeAddress}" />
+                <TextBlock Text="Geocoding:" FontWeight="Bold" Margin="0,6,0,0" />
+                <TextBlock Text="Latitude:" />
+                <TextBox Text="{Binding Latitude}" TextInputOptions.ContentType="Digits" />
+                <TextBlock Text="Longitude:" />
+                <TextBox Text="{Binding Longitude}" TextInputOptions.ContentType="Digits" />
+                <Button Content="Detect Placemarks" Command="{Binding GetAddressCommand}" IsEnabled="{Binding IsNotBusy}" />
+                <TextBlock Text="{Binding GeocodeAddress}" />
 
-                <Label Text="Reverse Geocoding:" FontAttributes="Bold" Margin="0,6,0,0" />
-                <Label Text="Address:" />
-                <Editor Text="{Binding Address}" AutoSize="TextChanges" />
-                <Button Text="Detect Location" Command="{Binding GetPositionCommand}" IsEnabled="{Binding IsNotBusy}" />
-                <Label Text="{Binding GeocodePosition}" />
-            </StackLayout>
-        </ScrollView>
+                <TextBlock Text="Reverse Geocoding:" FontWeight="Bold" Margin="0,6,0,0" />
+                <TextBlock Text="Address:" />
+                <TextBox AcceptsReturn="True" Text="{Binding Address}" />
+                <Button Content="Detect Location" Command="{Binding GetPositionCommand}" IsEnabled="{Binding IsNotBusy}" />
+                <TextBlock Text="{Binding GeocodePosition}" />
+            </StackPanel>
+        </ScrollViewer>
     </Grid>
 
 </views:BasePage>

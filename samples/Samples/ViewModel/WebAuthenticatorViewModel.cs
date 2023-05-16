@@ -1,8 +1,8 @@
 using System;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using CommunityToolkit.Mvvm.Input;
 using Microsoft.Maui.Authentication;
-using Microsoft.Maui.Controls;
 using Microsoft.Maui.Devices;
 
 namespace Samples.ViewModel
@@ -13,10 +13,10 @@ namespace Samples.ViewModel
 
 		public WebAuthenticatorViewModel()
 		{
-			MicrosoftCommand = new Command(async () => await OnAuthenticate("Microsoft"));
-			GoogleCommand = new Command(async () => await OnAuthenticate("Google"));
-			FacebookCommand = new Command(async () => await OnAuthenticate("Facebook"));
-			AppleCommand = new Command(async () => await OnAuthenticate("Apple"));
+			MicrosoftCommand = new RelayCommand(async () => await OnAuthenticate("Microsoft"));
+			GoogleCommand = new RelayCommand(async () => await OnAuthenticate("Google"));
+			FacebookCommand = new RelayCommand(async () => await OnAuthenticate("Facebook"));
+			AppleCommand = new RelayCommand(async () => await OnAuthenticate("Apple"));
 		}
 
 		public ICommand MicrosoftCommand { get; }

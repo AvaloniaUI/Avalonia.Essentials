@@ -1,7 +1,7 @@
 using System;
 using System.Windows.Input;
+using CommunityToolkit.Mvvm.Input;
 using Microsoft.Maui.ApplicationModel;
-using Microsoft.Maui.Controls;
 using Microsoft.Maui.Devices;
 
 namespace Samples.ViewModel
@@ -13,8 +13,8 @@ namespace Samples.ViewModel
 
 		public VibrationViewModel()
 		{
-			VibrateCommand = new Command(OnVibrate);
-			CancelCommand = new Command(OnCancel);
+			VibrateCommand = new RelayCommand(OnVibrate);
+			CancelCommand = new RelayCommand(OnCancel);
 		}
 
 		public ICommand VibrateCommand { get; }

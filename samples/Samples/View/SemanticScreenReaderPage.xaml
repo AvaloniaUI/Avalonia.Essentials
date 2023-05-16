@@ -1,25 +1,25 @@
-<views:BasePage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-                xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+<views:BasePage xmlns="https://github.com/avaloniaui"
+                xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                 xmlns:views="clr-namespace:Samples.View"
                 x:Class="Samples.View.SemanticScreenReaderPage"
                 Title="Semantic Screen Reader">
 
     <Grid RowDefinitions="Auto,*">
-        <Label Text="Read out the semanic contents of a screen." FontAttributes="Bold" Margin="12" />
+        <TextBlock Text="Read out the semanic contents of a screen." FontWeight="Bold" Margin="12" />
 
-        <ScrollView Grid.Row="1">
-            <StackLayout Padding="12,0,12,12" Spacing="6">
-                <Label Text="We hope the SemanticScreenReader APIs will further enable you to improve the accessibility of your apps"
-                       TextColor="RoyalBlue" FontSize="20"
-                       HorizontalTextAlignment="Center" Margin="0,50,0,0"/>
-                <Label Text="Turn on your screen reader and listen for what is read aloud."
-                       TextColor="RoyalBlue" FontAttributes="Bold" FontSize="16"
+        <ScrollViewer Grid.Row="1">
+            <StackPanel Margin="12,0,12,12" Spacing="6">
+                <TextBlock Text="We hope the SemanticScreenReader APIs will further enable you to improve the accessibility of your apps"
+                       Foreground="RoyalBlue" FontSize="20"
+                       TextAlignment="Center" Margin="0,50,0,0"/>
+                <TextBlock Text="Turn on your screen reader and listen for what is read aloud."
+                       Foreground="RoyalBlue" FontWeight="Bold" FontSize="16"
                        Margin="0,10"/>
-                <Button Text="Activate to hear announcement text"
-                        HorizontalOptions="Center"
-                        Clicked="Announce_Clicked"/>
-            </StackLayout>
-        </ScrollView>
+                <Button Content="Activate to hear announcement text"
+                        HorizontalAlignment="Center"
+                        Click="Announce_Clicked"/>
+            </StackPanel>
+        </ScrollViewer>
     </Grid>
 
 </views:BasePage>

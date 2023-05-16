@@ -1,7 +1,7 @@
 using System;
 using System.Windows.Input;
+using CommunityToolkit.Mvvm.Input;
 using Microsoft.Maui.ApplicationModel;
-using Microsoft.Maui.Controls;
 using Microsoft.Maui.Devices.Sensors;
 
 namespace Samples.ViewModel
@@ -81,8 +81,8 @@ namespace Samples.ViewModel
 
 		public MapsViewModel()
 		{
-			MapsCommand = new Command(OpenLocation);
-			LaunchPlacemarkCommand = new Command(OpenPlacemark);
+			MapsCommand = new RelayCommand(OpenLocation);
+			LaunchPlacemarkCommand = new RelayCommand(OpenPlacemark);
 		}
 
 		async void OpenLocation()

@@ -1,60 +1,57 @@
-<views:BasePage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-                xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+<views:BasePage xmlns="https://github.com/avaloniaui"
+                xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                 xmlns:views="clr-namespace:Samples.View"
                 xmlns:viewmodels="clr-namespace:Samples.ViewModel"
                 x:Class="Samples.View.EmailPage"
-                Title="Email">
-    <views:BasePage.BindingContext>
+                Title="Email"
+                x:DataType="viewmodels:EmailViewModel">
+    <views:BasePage.DataContext>
         <viewmodels:EmailViewModel />
-    </views:BasePage.BindingContext>
+    </views:BasePage.DataContext>
 
-    <views:BasePage.ToolbarItems>
-        <ToolbarItem Text="Send" Command="{Binding SendEmailCommand}" IsEnabled="{Binding IsNotBusy}" />
-    </views:BasePage.ToolbarItems>
+  <Grid RowDefinitions="Auto,*">
+        <TextBlock Text="Easily send email messages." FontWeight="Bold" Margin="12" />
 
-    <Grid RowDefinitions="Auto,*">
-        <Label Text="Easily send email messages." FontAttributes="Bold" Margin="12" />
+        <ScrollViewer Grid.Row="1">
+            <StackPanel Margin="12,0,12,12" Spacing="6">
+                <ProgressBar IsVisible="{Binding IsBusy}" IsIndeterminate="{Binding IsBusy}" />
 
-        <ScrollView Grid.Row="1">
-            <StackLayout Padding="12,0,12,12" Spacing="6">
-                <ActivityIndicator IsVisible="{Binding IsBusy}" IsRunning="{Binding IsBusy}" />
+                <Button Content="Send Email" Command="{Binding SendEmailCommand}" IsEnabled="{Binding IsNotBusy}" />
 
-                <Button Text="Send Email" Command="{Binding SendEmailCommand}" IsEnabled="{Binding IsNotBusy}" />
+                <TextBlock Text="Recipients" FontWeight="Bold" Margin="0,6,0,0" />
+                <TextBlock Text="To:" />
+                <TextBox Text="{Binding RecipientsTo}" />
+                <TextBlock Text="CC:" />
+                <TextBox Text="{Binding RecipientsCc}" />
+                <TextBlock Text="BCC:" />
+                <TextBox Text="{Binding RecipientsBcc}" />
 
-                <Label Text="Recipients" FontAttributes="Bold" Margin="0,6,0,0" />
-                <Label Text="To:" />
-                <Entry Text="{Binding RecipientsTo}" />
-                <Label Text="CC:" />
-                <Entry Text="{Binding RecipientsCc}" />
-                <Label Text="BCC:" />
-                <Entry Text="{Binding RecipientsBcc}" />
+                <TextBlock Text="Message" FontWeight="Bold" Margin="0,6,0,0" />
+                <TextBlock Text="Subject:" />
+                <TextBox  Text="{Binding Subject}" />
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="Is Html?" TextAlignment="Right" HorizontalAlignment="Stretch" VerticalAlignment="Center"/>
+                    <ToggleSwitch IsChecked="{Binding IsHtml}" VerticalAlignment="Center"/>
+                </StackPanel>
+                <TextBlock Text="Body:" />
+                <TextBox AcceptsReturn="True" Text="{Binding Body}" />
 
-                <Label Text="Message" FontAttributes="Bold" Margin="0,6,0,0" />
-                <Label Text="Subject:" />
-                <Entry Text="{Binding Subject}" />
-                <StackLayout Orientation="Horizontal">
-                    <Label Text="Is Html?" HorizontalTextAlignment="End"  HorizontalOptions="FillAndExpand" VerticalOptions="Center"/>
-                    <Switch IsToggled="{Binding IsHtml}" VerticalOptions="Center"/>
-                </StackLayout>
-                <Label Text="Body:" />
-                <Editor Text="{Binding Body}" Keyboard="Chat" AutoSize="TextChanges" />
+                <TextBlock Text="Attachment" FontWeight="Bold" Margin="0,6,0,0" />
 
-                <Label Text="Attachment" FontAttributes="Bold" Margin="0,6,0,0" />
+                <TextBlock Text="File Name:" />
+                <TextBox Text="{Binding AttachmentName}" />
+                <TextBlock Text="File Contents:" />
+                <TextBox AcceptsReturn="True" Text="{Binding AttachmentContents}" />
 
-                <Label Text="File Name:" />
-                <Entry Text="{Binding AttachmentName}" />
-                <Label Text="File Contents:" />
-                <Editor Text="{Binding AttachmentContents}" Keyboard="Chat" AutoSize="TextChanges" />
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="Attach Multiple" TextAlignment="Right" HorizontalAlignment="Stretch" VerticalAlignment="Center"/>
+                    <ToggleSwitch IsChecked="{Binding HasMultipleAttachements}" VerticalAlignment="Center"/>
+                </StackPanel>
 
-                <StackLayout Orientation="Horizontal">
-                    <Label Text="Attach Multiple" HorizontalTextAlignment="End"  HorizontalOptions="FillAndExpand" VerticalOptions="Center"/>
-                    <Switch IsToggled="{Binding HasMultipleAttachements}" VerticalOptions="Center"/>
-                </StackLayout>
+                <Button Content="Send Email" Command="{Binding SendEmailCommand}" IsEnabled="{Binding IsNotBusy}" />
 
-                <Button Text="Send Email" Command="{Binding SendEmailCommand}" IsEnabled="{Binding IsNotBusy}" />
-
-            </StackLayout>
-        </ScrollView>
+            </StackPanel>
+        </ScrollViewer>
     </Grid>
 
 </views:BasePage>

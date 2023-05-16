@@ -1,53 +1,52 @@
-<views:BasePage
-    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:views="clr-namespace:Samples.View"
-    xmlns:viewmodels="clr-namespace:Samples.ViewModel"
-    x:Class="Samples.View.HomePage"
-    Title="Microsoft.Maui.Essentials">
-    <views:BasePage.BindingContext>
-        <viewmodels:HomeViewModel />
-    </views:BasePage.BindingContext>
+<controls:PageNavigationHost xmlns="https://github.com/avaloniaui"
+                             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                             xmlns:controls="using:Avalonia.Labs.Controls"
+                             xmlns:viewModel="using:Samples.ViewModel"
+                             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+                             x:Class="Samples.View.HomePage"
+                             x:DataType="viewModel:HomeViewModel">
+  <controls:PageNavigationHost.DataContext>
+    <viewModel:HomeViewModel />
+  </controls:PageNavigationHost.DataContext>
 
-        <CollectionView
-            ItemsSource="{Binding FilteredItems}"
-            SelectionMode="Single"
-            SelectionChanged="OnSampleTapped"
-            VerticalOptions="Fill">
+  <controls:PageNavigationHost.Page>
 
-            <CollectionView.Header>
-                <SearchBar Placeholder="Filter samples..." Text="{Binding FilterText}" />
-            </CollectionView.Header>
+    <controls:MasterDetailPage>
+      <controls:MasterDetailPage.Master>
+        <DockPanel>
+          <TextBox DockPanel.Dock="Top"
+                   Text="{Binding FilterText}"
+                   HorizontalAlignment="Stretch" />
+          <ListBox x:Name="NavigationList" ItemsSource="{Binding FilteredItems}"
+                   SelectionChanged="NavigationList_OnSelectionChanged">
+            <ListBox.ItemTemplate>
+              <DataTemplate>
+                <Grid Margin="12,6" RowDefinitions="Auto,Auto" ColumnDefinitions="48,*">
+                  <TextBlock Text="{Binding Icon}"
+                             FontSize="24"
+                             Grid.Row="0"
+                             Grid.Column="0"
+                             Grid.RowSpan="2"
+                             Margin="0, 0, 6, 3"
+                             HorizontalAlignment="Center" VerticalAlignment="Center" />
 
-            <CollectionView.ItemTemplate>
-                <DataTemplate>
-                    <Grid Padding="12,6" ColumnSpacing="6" RowSpacing="3">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto" />
-                            <RowDefinition Height="Auto" />
-                        </Grid.RowDefinitions>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="48" />
-                            <ColumnDefinition Width="*" />
-                        </Grid.ColumnDefinitions>
-
-                        <Label Text="{Binding Icon}"
-                                   FontSize="24"
-                                   Grid.Row="0"
-                                   Grid.Column="0"
-                                   Grid.RowSpan="2"
-                                   HorizontalOptions="Center" VerticalOptions="Center" />
-
-                        <Label Text="{Binding Name}"
-                                   FontAttributes="Bold"
-                                   Grid.Column="1" />
-                        <Label Text="{Binding Description}"
-                                   FontAttributes="Italic" TextColor="DarkGray"
-                                   Grid.Column="1" Grid.Row="1" />
-                    </Grid>
-                </DataTemplate>
-            </CollectionView.ItemTemplate>
-
-        </CollectionView>
-
-</views:BasePage>
+                  <TextBlock Text="{Binding Name}"
+                             FontWeight="Bold"
+                             Grid.Column="1" />
+                  <TextBlock Text="{Binding Description}"
+                             FontStyle="Italic" Foreground="DarkGray"
+                             Grid.Column="1" Grid.Row="1" />
+                </Grid>
+              </DataTemplate>
+            </ListBox.ItemTemplate>
+          </ListBox>
+        </DockPanel>
+      </controls:MasterDetailPage.Master>
+      <controls:MasterDetailPage.Detail>
+        <controls:NavigationPage x:Name="ContentPage" />
+      </controls:MasterDetailPage.Detail>
+    </controls:MasterDetailPage>
+  </controls:PageNavigationHost.Page>
+</controls:PageNavigationHost>

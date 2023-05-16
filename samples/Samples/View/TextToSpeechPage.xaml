@@ -1,44 +1,44 @@
-<?xml version="1.0" encoding="utf-8" ?>
-<views:BasePage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-                xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+<views:BasePage xmlns="https://github.com/avaloniaui"
+                xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                 xmlns:views="clr-namespace:Samples.View"
                 xmlns:viewmodels="clr-namespace:Samples.ViewModel"
                 x:Class="Samples.View.TextToSpeechPage"
-                Title="Text To Speech">
-    <ContentPage.BindingContext>
+                Title="Text To Speech"
+                x:DataType="viewmodels:TextToSpeechViewModel">
+    <views:BasePage.DataContext>
         <viewmodels:TextToSpeechViewModel />
-    </ContentPage.BindingContext>
+    </views:BasePage.DataContext>
 
     <Grid RowDefinitions="Auto,*">
-        <Label Text="Easily let your device speak for you." FontAttributes="Bold" Margin="12" />
+        <TextBlock Text="Easily let your device speak for you." FontWeight="Bold" Margin="12" />
 
-        <ScrollView Grid.Row="1">
-            <StackLayout Padding="12,0,12,12" Spacing="6">
-                <Label Text="Text :" />
-                <Editor Text="{Binding Text}" AutoSize="TextChanges" />
-                <Button Text="Speak" Command="{Binding SpeakCommand}" CommandParameter="{Binding Source={x:Reference SwitchMultiple}, Path=IsToggled}" IsEnabled="{Binding IsNotBusy}" />
-                <Button Text="Cancel" Command="{Binding CancelCommand}" IsEnabled="{Binding IsBusy}" />
+        <ScrollViewer Grid.Row="1">
+            <StackPanel Margin="12,0,12,12" Spacing="6">
+                <TextBlock Text="Text :" />
+                <TextBox Text="{Binding Text}" />
+                <Button Content="Speak" Command="{Binding SpeakCommand}" CommandParameter="{Binding #SwitchMultiple.IsChecked}" IsEnabled="{Binding IsNotBusy}" />
+                <Button Content="Cancel" Command="{Binding CancelCommand}" IsEnabled="{Binding IsBusy}" />
 
-                <Label Text="Multiple Lines Of Text" HorizontalOptions="Start" />
-                <Switch HorizontalOptions="Center" x:Name="SwitchMultiple"/>
+                <TextBlock Text="Multiple Lines Of Text" HorizontalAlignment="Left" />
+                <ToggleSwitch HorizontalAlignment="Center" x:Name="SwitchMultiple"/>
 
-                <Label Text="Advanced" HorizontalOptions="Start" />
-                <Switch HorizontalOptions="Center" IsToggled="{Binding AdvancedOptions}"/>
+                <TextBlock Text="Advanced" HorizontalAlignment="Left" />
+                <ToggleSwitch HorizontalAlignment="Center" IsChecked="{Binding AdvancedOptions}"/>
 
-                <Label Text="Volume" HorizontalOptions="Start"  IsVisible="{Binding AdvancedOptions}"/>
-                <Label Text="{Binding Volume}" HorizontalOptions="Center"  IsVisible="{Binding AdvancedOptions}"/>
+                <TextBlock Text="Volume" HorizontalAlignment="Left"  IsVisible="{Binding AdvancedOptions}"/>
+                <TextBlock Text="{Binding Volume}" HorizontalAlignment="Center"  IsVisible="{Binding AdvancedOptions}"/>
                 <Slider Value="{Binding Volume}" Minimum="0.0" Maximum="1.0" IsVisible="{Binding AdvancedOptions}"/>
 
-                <Label Text="Pitch" HorizontalOptions="Start"  IsVisible="{Binding AdvancedOptions}"/>
-                <Label Text="{Binding Pitch}" HorizontalOptions="Center"  IsVisible="{Binding AdvancedOptions}"/>
+                <TextBlock Text="Pitch" HorizontalAlignment="Left"  IsVisible="{Binding AdvancedOptions}"/>
+                <TextBlock Text="{Binding Pitch}" HorizontalAlignment="Center"  IsVisible="{Binding AdvancedOptions}"/>
                 <Slider Value="{Binding Pitch}" Minimum="0.0" Maximum="2.0" IsVisible="{Binding AdvancedOptions}"/>
 
-                <Button Text="Pick Locale" Command="{Binding PickLocaleCommand}" IsVisible="{Binding AdvancedOptions}"/>
-                <Label Text="{Binding Locale}" IsVisible="{Binding AdvancedOptions}"/>
+                <Button Content="Pick Locale" Command="{Binding PickLocaleCommand}" IsVisible="{Binding AdvancedOptions}"/>
+                <TextBlock Text="{Binding Locale}" IsVisible="{Binding AdvancedOptions}"/>
 
-                <ActivityIndicator IsVisible="{Binding IsBusy}" IsRunning="{Binding IsBusy}" />
-            </StackLayout>
-        </ScrollView>
+                <ProgressBar IsVisible="{Binding IsBusy}" IsIndeterminate="{Binding IsBusy}" />
+            </StackPanel>
+        </ScrollViewer>
     </Grid>
 
 </views:BasePage>

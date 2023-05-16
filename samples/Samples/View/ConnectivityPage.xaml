@@ -1,22 +1,23 @@
-<views:BasePage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-                xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+<views:BasePage xmlns="https://github.com/avaloniaui"
+                xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                 xmlns:views="clr-namespace:Samples.View"
                 xmlns:viewmodels="clr-namespace:Samples.ViewModel"
                 x:Class="Samples.View.ConnectivityPage"
-                Title="Connectivity">
-    <views:BasePage.BindingContext>
+                Title="Connectivity"
+                x:DataType="viewmodels:ConnectivityViewModel">
+    <views:BasePage.DataContext>
         <viewmodels:ConnectivityViewModel />
-    </views:BasePage.BindingContext>
+    </views:BasePage.DataContext>
 
     <Grid RowDefinitions="Auto,*">
-        <Label Text="Easily detect connectivity state." FontAttributes="Bold" Margin="12" />
+        <TextBlock Text="Easily detect connectivity state." FontWeight="Bold" Margin="12" />
 
-        <ScrollView Grid.Row="1">
-            <StackLayout Padding="12,6,12,12" Spacing="6">
-                <Label Text="Connectivity State:" FontAttributes="Bold" />
-                <Label Text="{Binding NetworkAccess, StringFormat='NetworkAccess: {0}'}" />
-                <Label Text="{Binding ConnectionProfiles, StringFormat='ConnectionProfiles: {0}'}" />
-            </StackLayout>
-        </ScrollView>
+        <ScrollViewer Grid.Row="1">
+            <StackPanel Margin="12,6,12,12" Spacing="6">
+                <TextBlock Text="Connectivity State:" FontWeight="Bold" />
+                <TextBlock Text="{Binding NetworkAccess, StringFormat='NetworkAccess: {0}'}" />
+                <TextBlock Text="{Binding ConnectionProfiles, StringFormat='ConnectionProfiles: {0}'}" />
+            </StackPanel>
+        </ScrollViewer>
     </Grid>
 </views:BasePage>

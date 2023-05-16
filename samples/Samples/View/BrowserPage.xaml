@@ -1,69 +1,70 @@
-<views:BasePage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-                xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+<views:BasePage xmlns="https://github.com/avaloniaui"
+                xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                 xmlns:views="clr-namespace:Samples.View"
                 xmlns:viewmodels="clr-namespace:Samples.ViewModel"
                 x:Class="Samples.View.BrowserPage"
-                Title="Browser">
-    <views:BasePage.BindingContext>
+                Title="Browser"
+                x:DataType="viewmodels:BrowserViewModel">
+    <views:BasePage.DataContext>
         <viewmodels:BrowserViewModel/>
-    </views:BasePage.BindingContext>
+    </views:BasePage.DataContext>
 
     <Grid RowDefinitions="Auto,*">
-        <Label Text="Quickly and easily open URIs." FontAttributes="Bold" Margin="12" />
+        <TextBlock Text="Quickly and easily open URIs." FontWeight="Bold" Margin="12" />
 
-        <ScrollView Grid.Row="1">
-            <StackLayout Padding="12,0,12,12" Spacing="6">
+        <ScrollViewer Grid.Row="1">
+            <StackPanel Margin="12,0,12,12" Spacing="6">
 
-                <Label Text="URI:" FontAttributes="Bold" Margin="0,6,0,0" />
+                <TextBlock Text="URI:" FontWeight="Bold" Margin="0,6,0,0" />
 
-                <Label Text="Enter URI:" />
-                <Entry Placeholder="https://..." Text="{Binding Uri}" />
+                <TextBlock Text="Enter URI:" />
+                <TextBox Watermark="https://..." Text="{Binding Uri}" />
 
-                <Button Text="Open URI"
+                <Button Content="Open URI"
                         Command="{Binding OpenUriCommand}"
                         IsEnabled="{Binding IsNotBusy}" />
 
 
-                <Label Text="Launch Type:" FontAttributes="Bold" Margin="0,6,0,0" />
-                <Picker HorizontalOptions="FillAndExpand"
+                <TextBlock Text="Launch Type:" FontWeight="Bold" Margin="0,6,0,0" />
+                <ComboBox HorizontalAlignment="Stretch"
                         ItemsSource="{Binding BrowserLaunchModes}"
                         SelectedIndex="{Binding BrowserType, Mode=TwoWay}" />
 
-                <Label Text="Launch Options:" FontAttributes="Bold" Margin="0,6,0,0" />
-                <Label Text="Title Mode:" />
-                <Picker HorizontalOptions="FillAndExpand"
+                <TextBlock Text="Launch Options:" FontWeight="Bold" Margin="0,6,0,0" />
+                <TextBlock Text="Title Mode:" />
+                <ComboBox HorizontalAlignment="Stretch"
                         ItemsSource="{Binding BrowserTitleModes}"
                         SelectedIndex="{Binding BrowserTitleType, Mode=TwoWay}" />
 
-                <Label Text="Toolbar Color:" />
-                <Picker HorizontalOptions="FillAndExpand"
+                <TextBlock Text="Toolbar Color:" />
+                <ComboBox HorizontalAlignment="Stretch"
                         ItemsSource="{Binding AllColors}"
                         SelectedIndex="{Binding ToolbarColor, Mode=TwoWay}" />
 
-                <Label Text="Control Tint Color (iOS):" />
-                <Picker HorizontalOptions="FillAndExpand"
+                <TextBlock Text="Control Tint Color (iOS):" />
+                <ComboBox HorizontalAlignment="Stretch"
                         ItemsSource="{Binding AllColors}"
                         SelectedIndex="{Binding ControlColor, Mode=TwoWay}" />
 
-                <Label Text="Flags:" FontAttributes="Bold" Margin="0,6,0,0" />
+                <TextBlock Text="Flags:" FontWeight="Bold" Margin="0,6,0,0" />
 
                 <Grid ColumnDefinitions="*,Auto" RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto">
 
-                    <Label Text="Launch Adjacent (Android)" Grid.Column="0" Grid.Row="0" />
-                    <Switch IsToggled="{Binding LaunchAdjacent, Mode=TwoWay}" Grid.Column="1" Grid.Row="0" />
+                    <TextBlock Text="Launch Adjacent (Android)" Grid.Column="0" Grid.Row="0" />
+                    <ToggleSwitch IsChecked="{Binding LaunchAdjacent, Mode=TwoWay}" Grid.Column="1" Grid.Row="0" />
 
-                    <Label Text="Present as Form Sheet (iOS)" Grid.Column="0" Grid.Row="1" />
-                    <Switch IsToggled="{Binding PresentAsFormSheet, Mode=TwoWay}" Grid.Column="1" Grid.Row="1" />
+                    <TextBlock Text="Present as Form Sheet (iOS)" Grid.Column="0" Grid.Row="1" />
+                    <ToggleSwitch IsChecked="{Binding PresentAsFormSheet, Mode=TwoWay}" Grid.Column="1" Grid.Row="1" />
 
-                    <Label Text="Present as Page Sheet (iOS)" Grid.Column="0" Grid.Row="2" />
-                    <Switch IsToggled="{Binding PresentAsPageSheet, Mode=TwoWay}" Grid.Column="1" Grid.Row="2" />
+                    <TextBlock Text="Present as Page Sheet (iOS)" Grid.Column="0" Grid.Row="2" />
+                    <ToggleSwitch IsChecked="{Binding PresentAsPageSheet, Mode=TwoWay}" Grid.Column="1" Grid.Row="2" />
 
                 </Grid>
 
-                <Label Text="{Binding BrowserStatus}" />
+                <TextBlock Text="{Binding BrowserStatus}" />
 
-            </StackLayout>
-        </ScrollView>
+            </StackPanel>
+        </ScrollViewer>
     </Grid>
 
 </views:BasePage>

@@ -1,38 +1,39 @@
-<views:BasePage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-                xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+<views:BasePage xmlns="https://github.com/avaloniaui"
+                xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                 xmlns:views="clr-namespace:Samples.View"
                 xmlns:viewmodels="clr-namespace:Samples.ViewModel"
                 x:Class="Samples.View.SecureStoragePage"
-                Title="Secure Storage">
-    <views:BasePage.BindingContext>
+                Title="Secure Storage"
+                x:DataType="viewmodels:SecureStorageViewModel">
+    <views:BasePage.DataContext>
         <viewmodels:SecureStorageViewModel />
-    </views:BasePage.BindingContext>
+    </views:BasePage.DataContext>
 
     <Grid RowDefinitions="Auto,*">
-        <Label Text="Easily store secure data." FontAttributes="Bold" Margin="12" />
+        <TextBlock Text="Easily store secure data." FontWeight="Bold" Margin="12" />
 
-        <ScrollView Grid.Row="1">
-            <StackLayout Padding="12,0,12,12" Spacing="6">
-                <Label Text="Key:" />
-                <Entry Placeholder="Enter key..." Text="{Binding Key}" />
+        <ScrollViewer Grid.Row="1">
+            <StackPanel Margin="12,0,12,12" Spacing="6">
+                <TextBlock Text="Key:" />
+                <TextBox Watermark="Enter key..." Text="{Binding Key}" />
 
-                <Label Text="Value:" />
-                <Editor Placeholder="Enter text..." Text="{Binding SecuredValue}"
-                        AutoSize="TextChanges" />
+                <TextBlock Text="Value:" />
+                <TextBox AcceptsReturn="True" Watermark="Enter text..." Text="{Binding SecuredValue}"
+                        />
 
-                <Label Text="Enter key, and click 'Load' to get its paired value." />
-                <Button Text="Load" Command="{Binding LoadCommand}" IsEnabled="{Binding IsNotBusy}" />
+                <TextBlock Text="Enter key, and click 'Load' to get its paired value." />
+                <Button Content="Load" Command="{Binding LoadCommand}" IsEnabled="{Binding IsNotBusy}" />
 
-                <Label Text="Enter key and value, and click 'Save' to save the pair." />
-                <Button Text="Save" Command="{Binding SaveCommand}" IsEnabled="{Binding IsNotBusy}" />
+                <TextBlock Text="Enter key and value, and click 'Save' to save the pair." />
+                <Button Content="Save" Command="{Binding SaveCommand}" IsEnabled="{Binding IsNotBusy}" />
 
-                <Label Text="Enter key, and click 'Remove' to remove the paired value." />
-                <Button Text="Remove" Command="{Binding RemoveCommand}" IsEnabled="{Binding IsNotBusy}" />
+                <TextBlock Text="Enter key, and click 'Remove' to remove the paired value." />
+                <Button Content="Remove" Command="{Binding RemoveCommand}" IsEnabled="{Binding IsNotBusy}" />
 
-                <Label Text="Click 'Remove All' to clear all saved key-value pairs." Margin="0,20,0,0" />
-                <Button Text="Remove All" Command="{Binding RemoveAllCommand}" IsEnabled="{Binding IsNotBusy}" />
-            </StackLayout>
-        </ScrollView>
+                <TextBlock Text="Click 'Remove All' to clear all saved key-value pairs." Margin="0,20,0,0" />
+                <Button Content="Remove All" Command="{Binding RemoveAllCommand}" IsEnabled="{Binding IsNotBusy}" />
+            </StackPanel>
+        </ScrollViewer>
     </Grid>
 
 </views:BasePage>

@@ -7,28 +7,28 @@ namespace Samples.View
 			InitializeComponent();
 		}
 
-		protected override void OnAppearing()
+		protected override void OnLoaded()
 		{
-			base.OnAppearing();
+			base.OnLoaded();
 
-			SetupBinding(GridAccelerometer.BindingContext);
-			SetupBinding(GridCompass.BindingContext);
-			SetupBinding(GridGyro.BindingContext);
-			SetupBinding(GridMagnetometer.BindingContext);
-			SetupBinding(GridOrientation.BindingContext);
-			SetupBinding(GridBarometer.BindingContext);
+			SetupBinding(GridAccelerometer.DataContext);
+			SetupBinding(GridCompass.DataContext);
+			SetupBinding(GridGyro.DataContext);
+			SetupBinding(GridMagnetometer.DataContext);
+			SetupBinding(GridOrientation.DataContext);
+			SetupBinding(GridBarometer.DataContext);
 		}
 
-		protected override void OnDisappearing()
+		protected override void OnUnloaded()
 		{
-			TearDownBinding(GridAccelerometer.BindingContext);
-			TearDownBinding(GridCompass.BindingContext);
-			TearDownBinding(GridGyro.BindingContext);
-			TearDownBinding(GridMagnetometer.BindingContext);
-			TearDownBinding(GridOrientation.BindingContext);
-			TearDownBinding(GridBarometer.BindingContext);
+			TearDownBinding(GridAccelerometer.DataContext);
+			TearDownBinding(GridCompass.DataContext);
+			TearDownBinding(GridGyro.DataContext);
+			TearDownBinding(GridMagnetometer.DataContext);
+			TearDownBinding(GridOrientation.DataContext);
+			TearDownBinding(GridBarometer.DataContext);
 
-			base.OnDisappearing();
+			base.OnUnloaded();
 		}
 	}
 }

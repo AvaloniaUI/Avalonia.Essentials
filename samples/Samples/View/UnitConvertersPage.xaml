@@ -1,37 +1,36 @@
-<views:BasePage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-                xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+<views:BasePage xmlns="https://github.com/avaloniaui"
+                xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                 xmlns:views="clr-namespace:Samples.View"
                 xmlns:viewmodels="clr-namespace:Samples.ViewModel"
                 x:Class="Samples.View.UnitConvertersPage"
-                Title="Unit Converters">
-    <views:BasePage.BindingContext>
+                Title="Unit Converters"
+                x:DataType="viewmodels:UnitConvertersViewModel">
+    <views:BasePage.DataContext>
         <viewmodels:UnitConvertersViewModel />
-    </views:BasePage.BindingContext>
+    </views:BasePage.DataContext>
 
     <Grid RowDefinitions="Auto,*">
-        <Label Text="Easily convert units." FontAttributes="Bold" Margin="12" />
+        <TextBlock Text="Easily convert units." FontWeight="Bold" Margin="12" />
 
-        <ScrollView Grid.Row="1">
-            <StackLayout Padding="12,0,12,12" Spacing="6">
+        <ScrollViewer Grid.Row="1">
+            <StackPanel Margin="12,0,12,12" Spacing="6">
 
-                <Label Text="Temperature"/>
+                <TextBlock Text="Temperature"/>
                 <Grid ColumnDefinitions=".25*,.5*,.25*">
-                    <Label Grid.Column="0" Text="{Binding Fahrenheit, StringFormat='{0:N}F'}" HorizontalOptions="Center"/>
-                    <Slider Grid.Column="1" Minimum="0" Maximum="100" Value="{Binding Fahrenheit}" HorizontalOptions="FillAndExpand" 
-                            MaximumTrackColor="Blue" MinimumTrackColor="Blue" ThumbColor="Black"/>
-                    <Label Grid.Column="2" Text="{Binding Celsius, StringFormat='{0:N}C'}" HorizontalOptions="Center"/>
+                    <TextBlock Grid.Column="0" Text="{Binding Fahrenheit, StringFormat='{}{0:N}F'}" HorizontalAlignment="Center"/>
+                    <Slider Grid.Column="1" Minimum="0" Maximum="100" Value="{Binding Fahrenheit}" HorizontalAlignment="Stretch" />
+                    <TextBlock Grid.Column="2" Text="{Binding Celsius, StringFormat='{}{0:N}C'}" HorizontalAlignment="Center"/>
                 </Grid>
 
-                <Label Text="Distance"/>
+                <TextBlock Text="Distance"/>
                 <Grid ColumnDefinitions=".25*,.5*,.25*">
-                    <Label Grid.Column="0" Text="{Binding Miles, StringFormat='{0:N} mi'}" HorizontalOptions="Center"/>
-                    <Slider Grid.Column="1" Minimum="0" Maximum="100" Value="{Binding Miles}" HorizontalOptions="FillAndExpand"
-                            MaximumTrackColor="Blue" MinimumTrackColor="Blue" ThumbColor="Black"/>
-                    <Label Grid.Column="2" Text="{Binding Kilometers, StringFormat='{0:N} km'}" HorizontalOptions="Center"/>
+                    <TextBlock Grid.Column="0" Text="{Binding Miles, StringFormat='{}{0:N} mi'}" HorizontalAlignment="Center"/>
+                    <Slider Grid.Column="1" Minimum="0" Maximum="100" Value="{Binding Miles}" HorizontalAlignment="Stretch" />
+                    <TextBlock Grid.Column="2" Text="{Binding Kilometers, StringFormat='{}{0:N} km'}" HorizontalAlignment="Center"/>
                 </Grid>
 
-            </StackLayout>
-        </ScrollView>
+            </StackPanel>
+        </ScrollViewer>
     </Grid>
 
 </views:BasePage>

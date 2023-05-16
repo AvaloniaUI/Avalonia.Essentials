@@ -2,6 +2,7 @@
   <PropertyGroup>
     <SampleProject>true</SampleProject>
     <UseMaui Condition=" '$(UseWorkload)' == 'true' ">true</UseMaui>
+    <AvaloniaVersion>11.0.0-preview8</AvaloniaVersion>
   </PropertyGroup>
-  <Import Project="../../../Directory.Build.props" />
+  <Import Project="../Directory.Build.props" />
 </Project>

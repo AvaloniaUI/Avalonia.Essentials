@@ -1,4 +1,5 @@
 using System;
+using Avalonia.Interactivity;
 using Microsoft.Maui.Accessibility;
 
 namespace Samples.View
@@ -10,7 +11,7 @@ namespace Samples.View
 			InitializeComponent();
 		}
 
-		void Announce_Clicked(object sender, EventArgs e)
+		void Announce_Clicked(object sender, RoutedEventArgs e)
 		{
 			SemanticScreenReader.Announce("This is the announcement text");
 		}

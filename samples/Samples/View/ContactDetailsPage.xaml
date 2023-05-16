@@ -1,62 +1,52 @@
 <view:BasePage x:Class="Samples.View.ContactDetailsPage"
-               xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-               xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+               xmlns="https://github.com/avaloniaui"
+               xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                xmlns:view="clr-namespace:Samples.View"
-               Title="Contact Details">
+               xmlns:viewModel="clr-namespace:Samples.ViewModel"
+               Title="Contact Details"
+               x:DataType="viewModel:ContactDetailsViewModel">
 
     <Grid RowDefinitions="Auto,*">
-        <Label Text="View contact details." FontAttributes="Bold" Margin="12" />
+        <TextBlock Text="View contact details." FontWeight="Bold" Margin="12" />
 
-        <StackLayout Padding="12,0,12,12" Spacing="6" Grid.Row="1">
+        <StackPanel Margin="12,0,12,12" Spacing="6" Grid.Row="1">
 
-            <Label FontAttributes="Bold" Text="Id:" />
-            <Label Text="{Binding Contact.Id}" />
+            <TextBlock FontWeight="Bold" Text="Id:" />
+            <TextBlock Text="{Binding Contact.Id}" />
 
-            <Label FontAttributes="Bold" Text="DisplayName:" />
-            <Label Text="{Binding Contact.DisplayName}" />
+            <TextBlock FontWeight="Bold" Text="DisplayName:" />
+            <TextBlock Text="{Binding Contact.DisplayName}" />
 
-            <Label FontAttributes="Bold" Text="Prefix:" />
-            <Label Text="{Binding Contact.NamePrefix}" />
-            <Label FontAttributes="Bold" Text="Given Name / First Name:" />
-            <Label Text="{Binding Contact.GivenName}" />
-            <Label FontAttributes="Bold" Text="Middle Name:" />
-            <Label Text="{Binding Contact.MiddleName}" />
-            <Label FontAttributes="Bold" Text="Family Name / Last Name:" />
-            <Label Text="{Binding Contact.FamilyName}" />
-            <Label FontAttributes="Bold" Text="Suffix:" />
-            <Label Text="{Binding Contact.NameSuffix}" />
+            <TextBlock FontWeight="Bold" Text="Prefix:" />
+            <TextBlock Text="{Binding Contact.NamePrefix}" />
+            <TextBlock FontWeight="Bold" Text="Given Name / First Name:" />
+            <TextBlock Text="{Binding Contact.GivenName}" />
+            <TextBlock FontWeight="Bold" Text="Middle Name:" />
+            <TextBlock Text="{Binding Contact.MiddleName}" />
+            <TextBlock FontWeight="Bold" Text="Family Name / Last Name:" />
+            <TextBlock Text="{Binding Contact.FamilyName}" />
+            <TextBlock FontWeight="Bold" Text="Suffix:" />
+            <TextBlock Text="{Binding Contact.NameSuffix}" />
 
-            <Label FontAttributes="Bold" Text="Numbers:" />
-            <StackLayout BindableLayout.ItemsSource="{Binding Contact.Phones}">
-                <BindableLayout.ItemTemplate>
+            <TextBlock FontWeight="Bold" Text="Numbers:" />
+            <ItemsControl ItemsSource="{Binding Contact.Phones}">
+                <ItemsControl.ItemTemplate>
                     <DataTemplate>
-                        <Label>
-                            <Label.FormattedText>
-                                <FormattedString>
-                                    <Span Text="{Binding PhoneNumber}" />
-                                </FormattedString>
-                            </Label.FormattedText>
-                        </Label>
+                        <TextBlock Text="{Binding PhoneNumber}" />
                     </DataTemplate>
-                </BindableLayout.ItemTemplate>
-            </StackLayout>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
 
-            <Label FontAttributes="Bold" Text="Emails:" />
-            <StackLayout BindableLayout.ItemsSource="{Binding Contact.Emails}">
-                <BindableLayout.ItemTemplate>
+            <TextBlock FontWeight="Bold" Text="Emails:" />
+            <ItemsControl ItemsSource="{Binding Contact.Emails}">
+                <ItemsControl.ItemTemplate>
                     <DataTemplate>
-                        <Label>
-                            <Label.FormattedText>
-                                <FormattedString>
-                                    <Span Text="{Binding EmailAddress}" />
-                                </FormattedString>
-                            </Label.FormattedText>
-                        </Label>
+                        <TextBlock Text="{Binding EmailAddress}" />
                     </DataTemplate>
-                </BindableLayout.ItemTemplate>
-            </StackLayout>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
 
-        </StackLayout>
+        </StackPanel>
     </Grid>
 
 </view:BasePage>

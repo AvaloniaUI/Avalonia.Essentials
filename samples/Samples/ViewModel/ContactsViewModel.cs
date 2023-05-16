@@ -2,9 +2,9 @@ using System;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using CommunityToolkit.Mvvm.Input;
 using Microsoft.Maui.ApplicationModel;
 using Microsoft.Maui.ApplicationModel.Communication;
-using Microsoft.Maui.Controls;
 using ContactsManager = Microsoft.Maui.ApplicationModel.Communication.Contacts;
 
 namespace Samples.ViewModel
@@ -15,8 +15,8 @@ namespace Samples.ViewModel
 
 		public ContactsViewModel()
 		{
-			GetContactCommand = new Command(OnGetContact);
-			GetAllContactCommand = new Command(OnGetAllContact);
+			GetContactCommand = new RelayCommand(OnGetContact);
+			GetAllContactCommand = new RelayCommand(OnGetAllContact);
 		}
 
 		public ICommand GetContactCommand { get; }

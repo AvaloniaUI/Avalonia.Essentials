@@ -3,7 +3,7 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Input;
-using Microsoft.Maui.Controls;
+using CommunityToolkit.Mvvm.Input;
 using Microsoft.Maui.Media;
 
 namespace Samples.ViewModel
@@ -21,9 +21,9 @@ namespace Samples.ViewModel
 
 		public TextToSpeechViewModel()
 		{
-			SpeakCommand = new Command<bool>(OnSpeak);
-			CancelCommand = new Command(OnCancel);
-			PickLocaleCommand = new Command(async () => await OnPickLocale());
+			SpeakCommand = new RelayCommand<bool>(OnSpeak);
+			CancelCommand = new RelayCommand(OnCancel);
+			PickLocaleCommand = new RelayCommand(async () => await OnPickLocale());
 
 			Text = "Xamarin Essentials makes text to speech easy!";
 
@@ -97,7 +97,8 @@ namespace Samples.ViewModel
 				.Select(i => string.IsNullOrEmpty(i.Country) ? i.Language : $"{i.Language} ({i.Country})")
 				.ToArray();
 
-			var result = await Application.Current.MainPage.DisplayActionSheet("Pick", "OK", null, languages);
+			var result = languages.First();// await Application.Current.MainPage.DisplayActionSheet("Pick", "OK", null, languages);
+			// TODO Avalonia, add interaction or something to show popup
 
 			if (!string.IsNullOrEmpty(result) && Array.IndexOf(languages, result) is int idx && idx != -1)
 			{

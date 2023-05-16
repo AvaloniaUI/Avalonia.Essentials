@@ -1,0 +1,3 @@
+[submodule "submodules/Avalonia.Labs"]
+	path = submodules/Avalonia.Labs
+	url = https://github.com/AvaloniaUI/Avalonia.Labs.git

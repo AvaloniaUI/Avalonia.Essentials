@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Windows.Input;
+using Avalonia.Media;
+using CommunityToolkit.Mvvm.Input;
 using Microsoft.Maui.ApplicationModel;
-using Microsoft.Maui.Controls;
-using Microsoft.Maui.Graphics;
 
 namespace Samples.ViewModel
 {
@@ -27,7 +27,7 @@ namespace Samples.ViewModel
 
 		public BrowserViewModel()
 		{
-			OpenUriCommand = new Command(OpenUri);
+			OpenUriCommand = new RelayCommand(OpenUri);
 
 			colorDictionary = typeof(Color)
 				.GetFields()
@@ -146,11 +146,11 @@ namespace Samples.ViewModel
 				IsBusy = false;
 			}
 
-			Color GetColor(int index)
+			Microsoft.Maui.Essentials.Color GetColor(int index)
 			{
-				return index <= 0
-					? (Color)null
-					: colorDictionary[AllColors[index]];
+				if (index <= 0) return default;
+				var color = colorDictionary[AllColors[index]];
+				return new Microsoft.Maui.Essentials.Color(color.A * 255f, color.R * 255f, color.G * 255f, color.B * 255f);
 			}
 		}
 	}

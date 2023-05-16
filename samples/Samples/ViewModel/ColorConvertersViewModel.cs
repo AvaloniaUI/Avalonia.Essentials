@@ -1,5 +1,5 @@
 ﻿using System;
-using Microsoft.Maui.Graphics;
+using Avalonia.Media;
 
 namespace Samples.ViewModel
 {
@@ -63,15 +63,16 @@ namespace Samples.ViewModel
 		{
 			try
 			{
-				var color = Color.FromArgb(Hex);
+				var color = Color.Parse(Hex);
+				var hsl = color.ToHsl();
 
 				RegularColor = color;
-				AlphaColor = color.WithAlpha(Alpha / 255f);
-				SaturationColor = color.WithSaturation(Saturation / 100f);
-				HueColor = color.WithHue(Hue / 255f);
-				LuminosityColor = color.WithLuminosity(Luminosity / 100f);
-				ComplementColor = color.GetComplementary();
-				ComplementHex = ComplementColor.ToHex();
+				AlphaColor = new Color((byte)(Alpha % 255), color.R, color.G, color.B);
+				SaturationColor = new HslColor(hsl.A, hsl.H, Saturation / 100f, hsl.L).ToRgb();
+				HueColor = new HslColor(hsl.A, Hue / 255f, hsl.S, hsl.L).ToRgb();
+				LuminosityColor = new HslColor(hsl.A, hsl.H, hsl.S, Luminosity / 100f).ToRgb();
+				ComplementColor = color; // TODO Avalonia
+				ComplementHex = ComplementColor.ToString();
 
 				OnPropertyChanged(nameof(RegularColor));
 				OnPropertyChanged(nameof(AlphaColor));

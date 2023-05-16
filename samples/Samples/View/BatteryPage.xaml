@@ -1,25 +1,26 @@
-<views:BasePage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-                xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+<views:BasePage xmlns="https://github.com/avaloniaui"
+                xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                 xmlns:views="clr-namespace:Samples.View"
                 xmlns:viewmodels="clr-namespace:Samples.ViewModel"
                 x:Class="Samples.View.BatteryPage"
-                Title="Battery">
-    <views:BasePage.BindingContext>
+                Title="Battery"
+                x:DataType="viewmodels:BatteryViewModel">
+    <views:BasePage.DataContext>
         <viewmodels:BatteryViewModel/>
-    </views:BasePage.BindingContext>
+    </views:BasePage.DataContext>
 
     <Grid RowDefinitions="Auto,*">
-        <Label Text="Easily detect battery level, source, and state." FontAttributes="Bold" Margin="12" />
+        <TextBlock Text="Easily detect battery level, source, and state." FontWeight="Bold" Margin="12" />
 
-        <ScrollView Grid.Row="1">
-            <StackLayout Padding="12,0,12,12" Spacing="6">
-                <Label Text="Battery State:" FontAttributes="Bold" Margin="0,6,0,0" />
-                <Label Text="{Binding Level, StringFormat='Charge Level: {0:P1}'}" />
-                <Label Text="{Binding State, StringFormat='State: {0}'}" />
-                <Label Text="{Binding PowerSource, StringFormat='Power Source: {0}'}" />
-                <Label Text="{Binding EnergySaverStatus, StringFormat='Energy Saver: {0}'}" />
-            </StackLayout>
-        </ScrollView>
+        <ScrollViewer Grid.Row="1">
+            <StackPanel Margin="12,0,12,12" Spacing="6">
+                <TextBlock Text="Battery State:" FontWeight="Bold" Margin="0,6,0,0" />
+                <TextBlock Text="{Binding Level, StringFormat='Charge Level: {0:P1}'}" />
+                <TextBlock Text="{Binding State, StringFormat='State: {0}'}" />
+                <TextBlock Text="{Binding PowerSource, StringFormat='Power Source: {0}'}" />
+                <TextBlock Text="{Binding EnergySaverStatus, StringFormat='Energy Saver: {0}'}" />
+            </StackPanel>
+        </ScrollViewer>
     </Grid>
 
 </views:BasePage>

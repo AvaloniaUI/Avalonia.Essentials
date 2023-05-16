@@ -1,6 +1,6 @@
 using System.IO;
 using System.Windows.Input;
-using Microsoft.Maui.Controls;
+using CommunityToolkit.Mvvm.Input;
 using Microsoft.Maui.Storage;
 
 namespace Samples.ViewModel
@@ -16,9 +16,9 @@ namespace Samples.ViewModel
 
 		public FileSystemViewModel()
 		{
-			LoadFileCommand = new Command(DoLoadFile);
-			SaveFileCommand = new Command(DoSaveFile);
-			DeleteFileCommand = new Command(DoDeleteFile);
+			LoadFileCommand = new RelayCommand(DoLoadFile);
+			SaveFileCommand = new RelayCommand(DoSaveFile);
+			DeleteFileCommand = new RelayCommand(DoDeleteFile);
 
 			DoLoadFile();
 		}

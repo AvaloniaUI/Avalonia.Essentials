@@ -1,8 +1,8 @@
 using System;
 using System.Diagnostics;
 using System.Windows.Input;
+using CommunityToolkit.Mvvm.Input;
 using Microsoft.Maui.ApplicationModel;
-using Microsoft.Maui.Controls;
 using Microsoft.Maui.Devices.Sensors;
 
 namespace Samples.ViewModel
@@ -16,8 +16,8 @@ namespace Samples.ViewModel
 
 		public CompassViewModel()
 		{
-			StartCommand = new Command(OnStart);
-			StopCommand = new Command(OnStop);
+			StartCommand = new RelayCommand(OnStart);
+			StopCommand = new RelayCommand(OnStop);
 		}
 
 		public ICommand StartCommand { get; }

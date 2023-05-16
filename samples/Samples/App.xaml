@@ -1,12 +1,16 @@
-<?xml version="1.0" encoding="utf-8" ?>
-<Application xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:converters="clr-namespace:Samples.Converters"
-             xmlns:local="clr-namespace:Samples"
-             x:Class="Samples.App">
-    <Application.Resources>
-        <ResourceDictionary>
-            <converters:NegativeConverter x:Key="NegativeConverter" />
-        </ResourceDictionary>
-    </Application.Resources>
+<Application xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:converters="using:Samples.Converters"
+             xmlns:labs="using:Avalonia.Labs.Controls"
+             x:Class="Samples.App"
+             RequestedThemeVariant="Default">
+  <Application.Resources>
+    <ResourceDictionary>
+      <converters:NegativeConverter x:Key="NegativeConverter" />
+    </ResourceDictionary>
+  </Application.Resources>
+  <Application.Styles>
+    <FluentTheme />
+    <labs:ControlThemes />
+  </Application.Styles>
 </Application>

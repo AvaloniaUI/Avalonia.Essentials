@@ -1,12 +1,8 @@
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Text;
 using System.Windows.Input;
+using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
-using Microsoft.Maui;
 using Microsoft.Maui.ApplicationModel;
-using Microsoft.Maui.Controls;
 using Samples.ViewModel;
 
 namespace Samples.Model
@@ -29,7 +25,7 @@ namespace Samples.Model
 		public Permissions.BasePermission Permission { get; set; }
 
 		public ICommand CheckStatusCommand =>
-			new Command(async () =>
+			new RelayCommand(async () =>
 			{
 				try
 				{
@@ -43,7 +39,7 @@ namespace Samples.Model
 			});
 
 		public ICommand RequestCommand =>
-			new Command(async () =>
+			new RelayCommand(async () =>
 			{
 				try
 				{
@@ -57,7 +53,7 @@ namespace Samples.Model
 			});
 
 		public ICommand ShouldShowRationaleCommand =>
-			new Command(() =>
+			new RelayCommand(() =>
 			{
 				try
 				{

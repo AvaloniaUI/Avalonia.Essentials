@@ -4,9 +4,9 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
-using Microsoft.Maui;
+using Avalonia.Media.Imaging;
+using CommunityToolkit.Mvvm.Input;
 using Microsoft.Maui.ApplicationModel.Communication;
-using Microsoft.Maui.Controls;
 using Microsoft.Maui.Devices;
 using Microsoft.Maui.Storage;
 
@@ -15,17 +15,17 @@ namespace Samples.ViewModel
 	public class FilePickerViewModel : BaseViewModel
 	{
 		string text;
-		ImageSource image;
+		Bitmap image;
 		bool isImageVisible;
 
 		public FilePickerViewModel()
 		{
-			PickFileCommand = new Command(() => DoPickFile());
-			PickImageCommand = new Command(() => DoPickImage());
-			PickPdfCommand = new Command(() => DoPickPdf());
-			PickCustomTypeCommand = new Command(() => DoPickCustomType());
-			PickAndSendCommand = new Command(() => DoPickAndSend());
-			PickMultipleFilesCommand = new Command(() => DoPickMultipleFiles());
+			PickFileCommand = new RelayCommand(() => DoPickFile());
+			PickImageCommand = new RelayCommand(() => DoPickImage());
+			PickPdfCommand = new RelayCommand(() => DoPickPdf());
+			PickCustomTypeCommand = new RelayCommand(() => DoPickCustomType());
+			PickAndSendCommand = new RelayCommand(() => DoPickAndSend());
+			PickMultipleFilesCommand = new RelayCommand(() => DoPickMultipleFiles());
 		}
 
 		public ICommand PickFileCommand { get; }
@@ -46,7 +46,7 @@ namespace Samples.ViewModel
 			set => SetProperty(ref text, value);
 		}
 
-		public ImageSource Image
+		public Bitmap Image
 		{
 			get => image;
 			set => SetProperty(ref image, value);
@@ -150,7 +150,7 @@ namespace Samples.ViewModel
 					{
 						var stream = await result.OpenReadAsync();
 
-						Image = ImageSource.FromStream(() => stream);
+						Image = new Bitmap(stream);
 						IsImageVisible = true;
 					}
 					else
@@ -203,7 +203,7 @@ namespace Samples.ViewModel
 						firstResult.FileName.EndsWith("png", StringComparison.OrdinalIgnoreCase))
 					{
 						var stream = await firstResult.OpenReadAsync();
-						Image = ImageSource.FromStream(() => stream);
+						Image = new Bitmap(stream);
 						IsImageVisible = true;
 					}
 					else

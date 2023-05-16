@@ -1,7 +1,7 @@
 using System;
 using System.Windows.Input;
+using CommunityToolkit.Mvvm.Input;
 using Microsoft.Maui.ApplicationModel;
-using Microsoft.Maui.Controls;
 using Microsoft.Maui.Devices;
 
 namespace Samples.ViewModel
@@ -12,8 +12,8 @@ namespace Samples.ViewModel
 
 		public HapticFeedbackViewModel()
 		{
-			ClickCommand = new Command(OnClick);
-			LongPressCommand = new Command(OnLongPress);
+			ClickCommand = new RelayCommand(OnClick);
+			LongPressCommand = new RelayCommand(OnLongPress);
 		}
 
 		public ICommand ClickCommand { get; }

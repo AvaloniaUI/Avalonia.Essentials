@@ -1,28 +1,29 @@
-<view:BasePage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-               xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+<view:BasePage xmlns="https://github.com/avaloniaui"
+               xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                xmlns:view="clr-namespace:Samples.View"
                xmlns:viewModel="clr-namespace:Samples.ViewModel"
                x:Class="Samples.View.ScreenshotPage"
-               Title="Screenshot">
+               Title="Screenshot"
+               x:DataType="viewModel:ScreenshotViewModel">
 
-    <view:BasePage.BindingContext>
+    <view:BasePage.DataContext>
         <viewModel:ScreenshotViewModel />
-    </view:BasePage.BindingContext>
+    </view:BasePage.DataContext>
 
     <Grid RowDefinitions="Auto,*">
-        <Label Text="Quickly and easily take screenshots of your app." FontAttributes="Bold" Margin="12" />
+        <TextBlock Text="Quickly and easily take screenshots of your app." FontWeight="Bold" Margin="12" />
 
-        <ScrollView Grid.Row="1">
-            <StackLayout Padding="12,0,12,12" Spacing="6">
+        <ScrollViewer Grid.Row="1">
+            <StackPanel Margin="12,0,12,12" Spacing="6">
 
-                <Button Text="Take Screenshot" Command="{Binding ScreenshotCommand}" />
+                <Button Content="Take Screenshot" Command="{Binding ScreenshotCommand}" />
 
-                <Button Text="Email Screenshot" Command="{Binding EmailCommand}" />
+                <Button Content="Email Screenshot" Command="{Binding EmailCommand}" />
 
                 <Image Source="{Binding Image}" />
 
-            </StackLayout>
-        </ScrollView>
+            </StackPanel>
+        </ScrollViewer>
     </Grid>
 
 </view:BasePage>

@@ -1,7 +1,7 @@
 using System;
 using System.Windows.Input;
+using CommunityToolkit.Mvvm.Input;
 using Microsoft.Maui.ApplicationModel.Communication;
-using Microsoft.Maui.Controls;
 
 namespace Samples.ViewModel
 {
@@ -11,7 +11,7 @@ namespace Samples.ViewModel
 
 		public PhoneDialerViewModel()
 		{
-			OpenPhoneDialerCommand = new Command(OnOpenPhoneDialer);
+			OpenPhoneDialerCommand = new RelayCommand(OnOpenPhoneDialer);
 		}
 
 		public ICommand OpenPhoneDialerCommand { get; }

@@ -1,0 +1,6 @@
+<Project>
+  <PropertyGroup>
+    <_MauiDotNetTfm>net6.0</_MauiDotNetTfm>
+    <LangVersion>11</LangVersion>
+  </PropertyGroup>
+</Project>

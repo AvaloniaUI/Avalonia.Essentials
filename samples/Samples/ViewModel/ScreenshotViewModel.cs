@@ -1,8 +1,9 @@
 using System.IO;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using Avalonia.Media.Imaging;
+using CommunityToolkit.Mvvm.Input;
 using Microsoft.Maui.ApplicationModel.Communication;
-using Microsoft.Maui.Controls;
 using Microsoft.Maui.Media;
 using Microsoft.Maui.Storage;
 
@@ -10,19 +11,19 @@ namespace Samples.ViewModel
 {
 	class ScreenshotViewModel : BaseViewModel
 	{
-		ImageSource screenshot;
+		Bitmap screenshot;
 
 		public ScreenshotViewModel()
 		{
-			ScreenshotCommand = new Command(async () => await CaptureScreenshot(), () => Screenshot.IsCaptureSupported);
-			EmailCommand = new Command(async () => await EmailScreenshot(), () => Screenshot.IsCaptureSupported);
+			ScreenshotCommand = new RelayCommand(async () => await CaptureScreenshot(), () => Screenshot.IsCaptureSupported);
+			EmailCommand = new RelayCommand(async () => await EmailScreenshot(), () => Screenshot.IsCaptureSupported);
 		}
 
 		public ICommand ScreenshotCommand { get; }
 
 		public ICommand EmailCommand { get; }
 
-		public ImageSource Image
+		public Bitmap Image
 		{
 			get => screenshot;
 			set => SetProperty(ref screenshot, value);
@@ -33,7 +34,7 @@ namespace Samples.ViewModel
 			var mediaFile = await Screenshot.CaptureAsync();
 			var stream = await mediaFile.OpenReadAsync(ScreenshotFormat.Png);
 
-			Image = ImageSource.FromStream(() => stream);
+			Image = new Bitmap(stream);
 		}
 
 		async Task EmailScreenshot()

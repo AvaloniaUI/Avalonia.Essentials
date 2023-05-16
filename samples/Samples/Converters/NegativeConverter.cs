@@ -1,7 +1,6 @@
 using System;
 using System.Globalization;
-using Microsoft.Maui;
-using Microsoft.Maui.Controls;
+using Avalonia.Data.Converters;
 
 namespace Samples.Converters
 {

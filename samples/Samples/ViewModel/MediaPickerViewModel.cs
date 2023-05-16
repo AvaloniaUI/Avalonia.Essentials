@@ -2,7 +2,7 @@ using System;
 using System.IO;
 using System.Threading.Tasks;
 using System.Windows.Input;
-using Microsoft.Maui.Controls;
+using CommunityToolkit.Mvvm.Input;
 using Microsoft.Maui.Media;
 using Microsoft.Maui.Storage;
 
@@ -18,11 +18,11 @@ namespace Samples.ViewModel
 
 		public MediaPickerViewModel()
 		{
-			PickPhotoCommand = new Command(DoPickPhoto);
-			CapturePhotoCommand = new Command(DoCapturePhoto, () => MediaPicker.IsCaptureSupported);
+			PickPhotoCommand = new RelayCommand(DoPickPhoto);
+			CapturePhotoCommand = new RelayCommand(DoCapturePhoto, () => MediaPicker.IsCaptureSupported);
 
-			PickVideoCommand = new Command(DoPickVideo);
-			CaptureVideoCommand = new Command(DoCaptureVideo, () => MediaPicker.IsCaptureSupported);
+			PickVideoCommand = new RelayCommand(DoPickVideo);
+			CaptureVideoCommand = new RelayCommand(DoCaptureVideo, () => MediaPicker.IsCaptureSupported);
 		}
 
 		public ICommand PickPhotoCommand { get; }

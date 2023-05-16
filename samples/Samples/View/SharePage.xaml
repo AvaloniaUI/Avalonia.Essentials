@@ -1,82 +1,79 @@
-<views:BasePage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-                xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+<views:BasePage xmlns="https://github.com/avaloniaui"
+                xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                 xmlns:views="clr-namespace:Samples.View"
                 xmlns:viewmodels="clr-namespace:Samples.ViewModel"
                 x:Class="Samples.View.SharePage"
-                Title="Share">
-    <views:BasePage.BindingContext>
+                Title="Share"
+                x:DataType="viewmodels:ShareViewModel">
+    <views:BasePage.DataContext>
         <viewmodels:ShareViewModel />
-    </views:BasePage.BindingContext>
+    </views:BasePage.DataContext>
 
     <Grid RowDefinitions="Auto,*">
-        <Label Text="Share text, websites and files to other applications on the users device." FontAttributes="Bold" Margin="12" />
+        <TextBlock Text="Share text, websites and files to other applications on the users device." FontWeight="Bold" Margin="12" />
 
-        <ScrollView Grid.Row="1">
-            <StackLayout Padding="12,0,12,12" Spacing="6">
+        <ScrollViewer Grid.Row="1">
+            <StackPanel Margin="12,0,12,12" Spacing="6">
 
-                <Label Text="Share Text" FontAttributes="Bold" Margin="0,6,0,0" />
+                <TextBlock Text="Share Text" FontWeight="Bold" Margin="0,6,0,0" />
 
-                <Label Text="Title (Optional)" />
-                <Entry Text="{Binding Title}" />
+                <TextBlock Text="Title (Optional)" />
+                <TextBox Text="{Binding Title}" />
 
-                <Label Text="Subject (Optional)" />
-                <Entry Text="{Binding Subject}" />
+                <TextBlock Text="Subject (Optional)" />
+                <TextBox Text="{Binding Subject}" />
 
-                <StackLayout Orientation="Horizontal">
-                    <Label Text="Text" HorizontalOptions="StartAndExpand" VerticalOptions="End" />
-                    <Switch HorizontalOptions="End" IsToggled="{Binding ShareText}" VerticalOptions="End" />
-                </StackLayout>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="Text" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" />
+                    <ToggleSwitch HorizontalAlignment="Right" IsChecked="{Binding ShareText}" VerticalAlignment="Bottom" />
+                </StackPanel>
 
-                <Editor Text="{Binding Text}" Placeholder="Enter text to share here."
-                        Keyboard="Chat" AutoSize="TextChanges" />
+                <TextBox AcceptsReturn="True" Text="{Binding Text}" Watermark="Enter text to share here." />
 
-                <StackLayout Orientation="Horizontal">
-                    <Label Text="URI" HorizontalOptions="StartAndExpand" VerticalOptions="End" />
-                    <Switch HorizontalOptions="End" IsToggled="{Binding ShareUri}" VerticalOptions="End" />
-                </StackLayout>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="URI" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" />
+                    <ToggleSwitch HorizontalAlignment="Right" IsChecked="{Binding ShareUri}" VerticalAlignment="Bottom" />
+                </StackPanel>
 
-                <Entry Text="{Binding Uri}" Placeholder="Enter URI to share here." />
+                <TextBox Text="{Binding Uri}" Watermark="Enter URI to share here." />
 
-                <Button Text="Share Text" Command="{Binding RequestCommand}" CommandParameter="{Binding Source={RelativeSource Self}}" />
+                <Button Content="Share Text" Command="{Binding RequestCommand}" CommandParameter="{Binding Source={RelativeSource Self}}" />
 
-                <BoxView Margin="0,4,0,4" HeightRequest="1" BackgroundColor="Gray" HorizontalOptions="FillAndExpand" />
+                <Border Margin="0,4,0,4" Height="1" Background="Gray" HorizontalAlignment="Stretch" />
 
-                <Label Text="Share File" FontAttributes="Bold" Margin="0,6,0,0" />
+                <TextBlock Text="Share File" FontWeight="Bold" Margin="0,6,0,0" />
 
-                <Label Text="Title (Optional)" />
-                <Entry Text="{Binding ShareFileTitle}" />
+                <TextBlock Text="Title (Optional)" />
+                <TextBox Text="{Binding ShareFileTitle}" />
 
-                <Label Text="File Name:" />
-                <Entry Text="{Binding ShareFileAttachmentName}" />
-                <Label Text="File Contents:" />
-                <Editor Text="{Binding ShareFileAttachmentContents}"
-                        Keyboard="Chat" AutoSize="TextChanges" />
+                <TextBlock Text="File Name:" />
+                <TextBox Text="{Binding ShareFileAttachmentName}" />
+                <TextBlock Text="File Contents:" />
+                <TextBox AcceptsReturn="True" Text="{Binding ShareFileAttachmentContents}" />
 
-                <Button Text="Share File" Command="{Binding RequestFileCommand}" CommandParameter="{Binding Source={RelativeSource Self}}" />
+                <Button Content="Share File" Command="{Binding RequestFileCommand}" CommandParameter="{Binding Source={RelativeSource Self}}" />
 
-                <BoxView Margin="0,4,0,4" HeightRequest="1" BackgroundColor="Gray" HorizontalOptions="FillAndExpand" />
+                <Border Margin="0,4,0,4" Height="1" Background="Gray" HorizontalAlignment="Stretch" />
 
-                <Label Text="Share Files" FontAttributes="Bold" Margin="0,6,0,0" />
+                <TextBlock Text="Share Files" FontWeight="Bold" Margin="0,6,0,0" />
 
-                <Label Text="Title (Optional)" />
-                <Entry Text="{Binding ShareFilesTitle}" />
+                <TextBlock Text="Title (Optional)" />
+                <TextBox Text="{Binding ShareFilesTitle}" />
 
-                <Label Text="File1 Name:" />
-                <Entry Text="{Binding ShareFile1AttachmentName}" />
-                <Label Text="File1 Contents:" />
-                <Editor Text="{Binding ShareFile1AttachmentContents}"
-                        Keyboard="Chat" AutoSize="TextChanges" />
+                <TextBlock Text="File1 Name:" />
+                <TextBox Text="{Binding ShareFile1AttachmentName}" />
+                <TextBlock Text="File1 Contents:" />
+                <TextBox AcceptsReturn="True" Text="{Binding ShareFile1AttachmentContents}" />
 
-                <Label Text="File2 Name:" Margin="0,20,0,0"/>
-                <Entry Text="{Binding ShareFile2AttachmentName}" />
-                <Label Text="File2 Contents:" />
-                <Editor Text="{Binding ShareFile2AttachmentContents}"
-                        Keyboard="Chat" AutoSize="TextChanges" />
+                <TextBlock Text="File2 Name:" Margin="0,20,0,0"/>
+                <TextBox Text="{Binding ShareFile2AttachmentName}" />
+                <TextBlock Text="File2 Contents:" />
+                <TextBox AcceptsReturn="True" Text="{Binding ShareFile2AttachmentContents}" />
 
-                <Button Text="Share Files" Command="{Binding RequestFilesCommand}" CommandParameter="{Binding Source={RelativeSource Self}}" />
+                <Button Content="Share Files" Command="{Binding RequestFilesCommand}" CommandParameter="{Binding Source={RelativeSource Self}}" />
 
-            </StackLayout>
-        </ScrollView>
+            </StackPanel>
+        </ScrollViewer>
     </Grid>
 
 </views:BasePage>

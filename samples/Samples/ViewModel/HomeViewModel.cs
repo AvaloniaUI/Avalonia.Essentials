@@ -249,9 +249,12 @@ namespace Samples.ViewModel
 					new[] { "auth", "authenticate", "authenticator", "web", "webauth" }),
 			};
 			filteredItems = samples;
+			AllItems = samples;
 			filterText = string.Empty;
 		}
 
+		public IEnumerable<SampleItem> AllItems { get; }
+		
 		public IEnumerable<SampleItem> FilteredItems
 		{
 			get => filteredItems;

@@ -1,7 +1,7 @@
 using System;
 using System.Linq;
 using System.Windows.Input;
-using Microsoft.Maui.Controls;
+using CommunityToolkit.Mvvm.Input;
 using Microsoft.Maui.Devices.Sensors;
 
 namespace Samples.ViewModel
@@ -16,8 +16,8 @@ namespace Samples.ViewModel
 
 		public GeocodingViewModel()
 		{
-			GetAddressCommand = new Command(OnGetAddress);
-			GetPositionCommand = new Command(OnGetPosition);
+			GetAddressCommand = new RelayCommand(OnGetAddress);
+			GetPositionCommand = new RelayCommand(OnGetPosition);
 		}
 
 		public ICommand GetAddressCommand { get; }

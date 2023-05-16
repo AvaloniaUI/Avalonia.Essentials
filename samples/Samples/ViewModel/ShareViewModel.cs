@@ -1,8 +1,9 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Windows.Input;
+using Avalonia;
+using CommunityToolkit.Mvvm.Input;
 using Microsoft.Maui.ApplicationModel.DataTransfer;
-using Microsoft.Maui.Controls;
 using Microsoft.Maui.Storage;
 using Samples.Helpers;
 
@@ -33,9 +34,9 @@ namespace Samples.ViewModel
 
 		public ShareViewModel()
 		{
-			RequestCommand = new Command<Microsoft.Maui.Controls.View>(OnRequest);
-			RequestFileCommand = new Command<Microsoft.Maui.Controls.View>(OnFileRequest);
-			RequestFilesCommand = new Command<Microsoft.Maui.Controls.View>(OnFilesRequest);
+			RequestCommand = new RelayCommand<Visual>(OnRequest);
+			RequestFileCommand = new RelayCommand<Visual>(OnFileRequest);
+			RequestFilesCommand = new RelayCommand<Visual>(OnFilesRequest);
 		}
 
 		public bool ShareText
@@ -122,7 +123,7 @@ namespace Samples.ViewModel
 			set => SetProperty(ref shareFile2AttachmentName, value);
 		}
 
-		async void OnRequest(Microsoft.Maui.Controls.View element)
+		async void OnRequest(Visual element)
 			=> await Share.RequestAsync(new ShareTextRequest
 			{
 				Subject = Subject,
@@ -132,7 +133,7 @@ namespace Samples.ViewModel
 				PresentationSourceBounds = element.GetAbsoluteBounds()
 			});
 
-		async void OnFileRequest(Microsoft.Maui.Controls.View element)
+		async void OnFileRequest(Visual element)
 		{
 			if (string.IsNullOrWhiteSpace(ShareFileAttachmentContents))
 				return;
@@ -147,7 +148,7 @@ namespace Samples.ViewModel
 			});
 		}
 
-		async void OnFilesRequest(Microsoft.Maui.Controls.View element)
+		async void OnFilesRequest(Visual element)
 		{
 			if (string.IsNullOrWhiteSpace(ShareFile1AttachmentContents) ||
 				string.IsNullOrWhiteSpace(ShareFile2AttachmentContents))

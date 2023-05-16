@@ -1,7 +1,7 @@
 using System;
 using System.Threading.Tasks;
-using Microsoft.Maui.Controls;
-using Microsoft.Maui.Devices;
+using Avalonia.Controls;
+using Avalonia.Labs.Controls;
 using Samples.ViewModel;
 
 namespace Samples.View
@@ -10,22 +10,18 @@ namespace Samples.View
 	{
 		public BasePage()
 		{
-			NavigationPage.SetBackButtonTitle(this, "Back");
-			if (DeviceInfo.Idiom == DeviceIdiom.Watch)
-				NavigationPage.SetHasNavigationBar(this, false);
-
 			Loaded += OnLoaded;
 			Unloaded += OnUnloaded;
 		}
 
 		void OnLoaded(object sender, EventArgs e)
 		{
-			SetupBinding(BindingContext);
+			SetupBinding(DataContext);
 		}
 
 		void OnUnloaded(object sender, EventArgs e)
 		{
-			TearDownBinding(BindingContext);
+			TearDownBinding(DataContext);
 		}
 
 		protected void SetupBinding(object bindingContext)
@@ -50,23 +46,14 @@ namespace Samples.View
 
 		Task OnDisplayAlert(string message)
 		{
-			return DisplayAlert(Title, message, "OK");
+			((HomePage)TopLevel.GetTopLevel(this)!.Content)!.DisplayAlert(Title, message);
+			return Task.CompletedTask;
 		}
 
 		Task OnNavigate(BaseViewModel vm, bool showModal)
 		{
-			var name = vm.GetType().Name;
-			name = name.Replace("ViewModel", "Page", StringComparison.Ordinal);
-
-			var ns = GetType().Namespace;
-			var pageType = Type.GetType($"{ns}.{name}");
-
-			var page = (BasePage)Activator.CreateInstance(pageType);
-			page.BindingContext = vm;
-
-			return showModal
-				? Navigation.PushModalAsync(page)
-				: Navigation.PushAsync(page);
+			((HomePage)TopLevel.GetTopLevel(this)!.Content)!.Navigate(vm, showModal);
+			return Task.CompletedTask;
 		}
 	}
 }

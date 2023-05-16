@@ -1,61 +1,61 @@
-<views:BasePage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-                xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+<views:BasePage xmlns="https://github.com/avaloniaui"
+                xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                 xmlns:views="clr-namespace:Samples.View"
                 xmlns:viewmodels="clr-namespace:Samples.ViewModel"
                 x:Class="Samples.View.ColorConvertersPage"
-                Title="Color Converters">
-    <views:BasePage.BindingContext>
+                Title="Color Converters"
+                x:DataType="viewmodels:ColorConvertersViewModel">
+    <views:BasePage.DataContext>
         <viewmodels:ColorConvertersViewModel />
-    </views:BasePage.BindingContext>
+    </views:BasePage.DataContext>
 
-    <views:BasePage.Resources>
-        <ResourceDictionary>
-            <Style TargetType="BoxView">
-                <Setter Property="CornerRadius" Value="8" />
-                <Setter Property="HeightRequest" Value="24" />
-                <Setter Property="WidthRequest" Value="100" />
-                <Setter Property="VerticalOptions" Value="Center" />
-            </Style>
-            <Style TargetType="Slider">
-                <Setter Property="VerticalOptions" Value="Center" />
-            </Style>
-        </ResourceDictionary>
-    </views:BasePage.Resources>
+    <views:BasePage.Styles>
+      <Style Selector="Grid.container > Border">
+        <Setter Property="CornerRadius" Value="8" />
+        <Setter Property="Height" Value="24" />
+        <Setter Property="Width" Value="100" />
+        <Setter Property="VerticalAlignment" Value="Center" />
+      </Style>
+      <Style Selector="Grid.container > Slider">
+        <Setter Property="VerticalAlignment" Value="Center" />
+      </Style>
+    </views:BasePage.Styles>
 
     <Grid RowDefinitions="Auto,*">
-        <Label Text="Create, convert, and adjust colors." FontAttributes="Bold" Margin="12" />
+        <TextBlock Text="Create, convert, and adjust colors." FontWeight="Bold" Margin="12" />
 
-        <ScrollView Grid.Row="1">
-            <Grid Padding="12,0,12,12" RowSpacing="6" ColumnSpacing="6"
+        <ScrollViewer Grid.Row="1">
+            <Grid Classes="container"
+                  Margin="12,0,12,12"
                   ColumnDefinitions="*,Auto"
                   RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto">
 
-                <Label Text="Hex Color:" Grid.Row="0" Grid.ColumnSpan="2"/>
-                <Entry Text="{Binding Hex}" HorizontalOptions="Fill" Grid.Row="1" Grid.Column="0"/>
-                <BoxView Color="{Binding RegularColor}" Grid.Row="1" Grid.Column="1"/>
+                <TextBlock Text="Hex Color:" Grid.Row="0" Grid.ColumnSpan="2"/>
+                <TextBox Text="{Binding Hex}" HorizontalAlignment="Stretch" Grid.Row="1" Grid.Column="0"/>
+                <Border BorderBrush="{Binding RegularColor}" Grid.Row="1" Grid.Column="1"/>
 
-                <Label Text="Complementary Color:" Grid.Row="2" Grid.ColumnSpan="2"/>
-                <Label Text="{Binding ComplementHex}" HorizontalOptions="Fill" Grid.Row="3" Grid.Column="0"/>
-                <BoxView Color="{Binding ComplementColor}" Grid.Row="3" Grid.Column="1"/>
+                <TextBlock Text="Complementary Color:" Grid.Row="2" Grid.ColumnSpan="2"/>
+                <TextBlock Text="{Binding ComplementHex}" HorizontalAlignment="Stretch" Grid.Row="3" Grid.Column="0"/>
+                <Border BorderBrush="{Binding ComplementColor}" Grid.Row="3" Grid.Column="1"/>
 
-                <Label Text="{Binding Alpha, StringFormat='Alpha: {0:F0}'}" Grid.Row="4" Grid.ColumnSpan="2"/>
+                <TextBlock Text="{Binding Alpha, StringFormat='Alpha: {0:F0}'}" Grid.Row="4" Grid.ColumnSpan="2"/>
                 <Slider Minimum="0" Maximum="255" Value="{Binding Alpha}" Grid.Row="5" Grid.Column="0" />
-                <BoxView Color="{Binding AlphaColor}" Grid.Row="5" Grid.Column="1"/>
+                <Border BorderBrush="{Binding AlphaColor}" Grid.Row="5" Grid.Column="1"/>
 
-                <Label Text="{Binding Hue, StringFormat='Hue: {0:F0}'}" Grid.Row="6" Grid.ColumnSpan="2"/>
+                <TextBlock Text="{Binding Hue, StringFormat='Hue: {0:F0}'}" Grid.Row="6" Grid.ColumnSpan="2"/>
                 <Slider Minimum="0" Maximum="360" Value="{Binding Hue}" Grid.Row="7" Grid.Column="0"/>
-                <BoxView Color="{Binding HueColor}" Grid.Row="7" Grid.Column="1"/>
+                <Border BorderBrush="{Binding HueColor}" Grid.Row="7" Grid.Column="1"/>
 
-                <Label Text="{Binding Luminosity, StringFormat='Luminosity: {0:F0}'}" Grid.Row="8" Grid.ColumnSpan="2"/>
+                <TextBlock Text="{Binding Luminosity, StringFormat='Luminosity: {0:F0}'}" Grid.Row="8" Grid.ColumnSpan="2"/>
                 <Slider Minimum="0" Maximum="100" Value="{Binding Luminosity}" Grid.Row="9" Grid.Column="0"/>
-                <BoxView Color="{Binding LuminosityColor}" Grid.Row="9" Grid.Column="1"/>
+                <Border BorderBrush="{Binding LuminosityColor}" Grid.Row="9" Grid.Column="1"/>
 
-                <Label Text="{Binding Saturation, StringFormat='Saturation: {0:F0}'}" Grid.Row="10" Grid.ColumnSpan="2"/>
+                <TextBlock Text="{Binding Saturation, StringFormat='Saturation: {0:F0}'}" Grid.Row="10" Grid.ColumnSpan="2"/>
                 <Slider Minimum="0" Maximum="100" Value="{Binding Saturation}" Grid.Row="11" Grid.Column="0"/>
-                <BoxView Color="{Binding SaturationColor}" Grid.Row="11" Grid.Column="1"/>
+                <Border BorderBrush="{Binding SaturationColor}" Grid.Row="11" Grid.Column="1"/>
 
             </Grid>
-        </ScrollView>
+        </ScrollViewer>
     </Grid>
 
 </views:BasePage>

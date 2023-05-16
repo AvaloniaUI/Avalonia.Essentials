@@ -1,29 +1,30 @@
-<views:BasePage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-                xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+<views:BasePage xmlns="https://github.com/avaloniaui"
+                xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                 xmlns:views="clr-namespace:Samples.View"
                 xmlns:viewmodels="clr-namespace:Samples.ViewModel"
                 x:Class="Samples.View.KeepScreenOnPage"
-                Title="Keep Screen On">
-    <views:BasePage.BindingContext>
+                Title="Keep Screen On"
+                x:DataType="viewmodels:KeepScreenOnViewModel">
+    <views:BasePage.DataContext>
         <viewmodels:KeepScreenOnViewModel />
-    </views:BasePage.BindingContext>
+    </views:BasePage.DataContext>
 
     <Grid RowDefinitions="Auto,*">
-        <Label Text="One method call away from keeping the screen awake." FontAttributes="Bold" Margin="12" />
+        <TextBlock Text="One method call away from keeping the screen awake." FontWeight="Bold" Margin="12" />
 
-        <ScrollView Grid.Row="1">
-            <StackLayout Padding="12,0,12,12" Spacing="6">
+        <ScrollViewer Grid.Row="1">
+            <StackPanel Margin="12,0,12,12" Spacing="6">
 
-                <Label Text="The screen will never go to sleep!"
+                <TextBlock Text="The screen will never go to sleep!"
                        IsVisible="{Binding IsActive}" />
-                <Label Text="Just wait a bit, and then the screen will go to sleep."
+                <TextBlock Text="Just wait a bit, and then the screen will go to sleep."
                        IsVisible="{Binding IsActive, Converter={StaticResource NegativeConverter}}" />
 
-                <Button Text="Keep Awake" Command="{Binding RequestActiveCommand}" />
-                <Button Text="Get Some Rest" Command="{Binding RequestReleaseCommand}" />
+                <Button Content="Keep Awake" Command="{Binding RequestActiveCommand}" />
+                <Button Content="Get Some Rest" Command="{Binding RequestReleaseCommand}" />
 
-            </StackLayout>
-        </ScrollView>
+            </StackPanel>
+        </ScrollViewer>
     </Grid>
 
 </views:BasePage>

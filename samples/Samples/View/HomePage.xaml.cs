@@ -1,28 +1,80 @@
 using System;
 using System.Linq;
-using Microsoft.Maui;
-using Microsoft.Maui.Controls;
+using Avalonia;
+using Avalonia.Controls;
+using Avalonia.Controls.Notifications;
+using Avalonia.Controls.Templates;
+using Avalonia.Labs.Controls;
 using Samples.Model;
+using Samples.ViewModel;
 
-namespace Samples.View
+namespace Samples.View;
+
+public class PageLocator : IDataTemplate
 {
-	public partial class HomePage : BasePage
+	public Control Build(object param)
 	{
-		public HomePage()
+		var item = (SampleItem)param;
+		
+		var pageType = item.PageType;
+		var page = (BasePage)Activator.CreateInstance(pageType)!;
+		page.DataContext = param;
+		return page;
+	}
+
+	public bool Match(object data) => data is SampleItem;
+}
+
+public partial class HomePage : PageNavigationHost
+{
+	private static WindowNotificationManager _manager;
+	public HomePage()
+	{
+		InitializeComponent();
+	}
+
+	protected override void OnAttachedToVisualTree(VisualTreeAttachmentEventArgs e)
+	{
+		base.OnAttachedToVisualTree(e);
+		
+		if (_manager is null)
 		{
-			InitializeComponent();
+			var topLevel = TopLevel.GetTopLevel(this);
+			_manager = new WindowNotificationManager(topLevel);
 		}
+	}
 
-		async void OnSampleTapped(object sender, SelectionChangedEventArgs e)
+	public void DisplayAlert(string title, string message)
+	{
+		_manager.Show(new Notification(title, message));
+	}
+	
+	public void Navigate(BaseViewModel vm, bool showModal)
+	{
+		var name = vm.GetType().Name;
+		name = name.Replace("ViewModel", "Page", StringComparison.Ordinal);
+		var ns = GetType().Namespace;
+		var pageType = Type.GetType($"{ns}.{name}");
+		var page = (BasePage)Activator.CreateInstance(pageType)!;
+		page.DataContext = vm;
+
+		NavigationList.SelectedItem = null;
+		ContentPage.Push(page);
+	}
+	
+	public void Navigate(Type pageType)
+	{
+		var item = ((HomeViewModel)DataContext).AllItems.FirstOrDefault(p => p.PageType == pageType);
+		NavigationList.SelectedItem = item;
+	}
+
+	private void NavigationList_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
+	{
+		var sampleItem = (SampleItem)NavigationList.SelectedItem;
+		if (sampleItem is not null)
 		{
-			var item = e.CurrentSelection?.FirstOrDefault() as SampleItem;
-			if (item == null)
-				return;
-
-			await Navigation.PushAsync((Page)Activator.CreateInstance(item.PageType));
-
-			// deselect Item
-			((CollectionView)sender).SelectedItem = null;
+			var page = (BasePage)Activator.CreateInstance(sampleItem.PageType)!;
+			ContentPage.Push(page);
 		}
 	}
 }

@@ -1,14 +1,7 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using CommunityToolkit.Mvvm.Messaging;
-using Microsoft.Maui;
 using Microsoft.Maui.ApplicationModel;
-using Microsoft.Maui.Controls;
-using Microsoft.Maui.Controls.Xaml;
-using Samples.Model;
+using Samples.ViewModel;
 
 namespace Samples.View
 {
@@ -19,19 +12,19 @@ namespace Samples.View
 			InitializeComponent();
 		}
 
-		protected override void OnAppearing()
+		protected override void OnLoaded()
 		{
-			base.OnAppearing();
+			base.OnLoaded();
 
 			WeakReferenceMessenger.Default.Register<Exception, string>(
 				this,
 				nameof(PermissionException),
-				async (p, ex) => await DisplayAlert("Permission Error", ex.Message, "OK"));
+				async (p, ex) => await ((PermissionsViewModel)DataContext!).DisplayAlertAsync(ex.Message));
 		}
 
-		protected override void OnDisappearing()
+		protected override void OnUnloaded()
 		{
-			base.OnDisappearing();
+			base.OnUnloaded();
 
 			WeakReferenceMessenger.Default.Unregister<Exception, string>(this, nameof(PermissionException));
 		}

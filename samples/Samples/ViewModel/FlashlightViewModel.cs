@@ -1,8 +1,9 @@
 using System;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using Avalonia.Threading;
+using CommunityToolkit.Mvvm.Input;
 using Microsoft.Maui.ApplicationModel;
-using Microsoft.Maui.Controls;
 using Microsoft.Maui.Devices;
 
 namespace Samples.ViewModel
@@ -14,8 +15,8 @@ namespace Samples.ViewModel
 
 		public FlashlightViewModel()
 		{
-			ToggleCommand = new Command(OnToggle);
-			App.Current.Dispatcher.Dispatch(async () => await InitViewModel());
+			ToggleCommand = new RelayCommand(OnToggle);
+			Dispatcher.UIThread.InvokeAsync(async () => await InitViewModel());
 		}
 
 		public ICommand ToggleCommand { get; }

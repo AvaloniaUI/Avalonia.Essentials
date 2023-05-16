@@ -1,27 +1,28 @@
-<views:BasePage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-                xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+<views:BasePage xmlns="https://github.com/avaloniaui"
+                xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                 xmlns:views="clr-namespace:Samples.View"
                 xmlns:viewmodels="clr-namespace:Samples.ViewModel"
                 x:Class="Samples.View.MediaPickerPage"
-                Title="Media Picker">
-    <views:BasePage.BindingContext>
+                Title="Media Picker"
+                x:DataType="viewmodels:MediaPickerViewModel">
+    <views:BasePage.DataContext>
         <viewmodels:MediaPickerViewModel />
-    </views:BasePage.BindingContext>
+    </views:BasePage.DataContext>
 
     <Grid RowDefinitions="Auto,*">
-        <Label Text="Pick or capture a photo or video." FontAttributes="Bold" Margin="12" />
+        <TextBlock Text="Pick or capture a photo or video." FontWeight="Bold" Margin="12" />
 
-        <ScrollView Grid.Row="1">
-            <StackLayout Padding="12,0,12,12" Spacing="6">
-                <Button Text="Pick photo" Command="{Binding PickPhotoCommand}" />
-                <Button Text="Capture photo" Command="{Binding CapturePhotoCommand}" />
-                <Button Text="Pick video" Command="{Binding PickVideoCommand}" />
-                <Button Text="Capture video" Command="{Binding CaptureVideoCommand}" />
+        <ScrollViewer Grid.Row="1">
+            <StackPanel Margin="12,0,12,12" Spacing="6">
+                <Button Content="Pick photo" Command="{Binding PickPhotoCommand}" />
+                <Button Content="Capture photo" Command="{Binding CapturePhotoCommand}" />
+                <Button Content="Pick video" Command="{Binding PickVideoCommand}" />
+                <Button Content="Capture video" Command="{Binding CaptureVideoCommand}" />
 
-                <Image Source="{Binding PhotoPath}" IsVisible="{Binding ShowPhoto}" HeightRequest="300"/>
-                <!--<MediaElement VerticalOptions="FillAndExpand" Source="{Binding VideoPath}" IsVisible="{Binding ShowVideo}" />-->
-            </StackLayout>
-        </ScrollView>
+                <Image Source="{Binding PhotoPath}" IsVisible="{Binding ShowPhoto}" Height="300"/>
+                <!--<MediaElement VerticalAlignment="Stretch" Source="{Binding VideoPath}" IsVisible="{Binding ShowVideo}" />-->
+            </StackPanel>
+        </ScrollViewer>
     </Grid>
 
 </views:BasePage>

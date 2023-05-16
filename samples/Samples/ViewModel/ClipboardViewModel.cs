@@ -1,8 +1,8 @@
 using System;
 using System.Windows.Input;
+using CommunityToolkit.Mvvm.Input;
 using Microsoft.Maui.ApplicationModel;
 using Microsoft.Maui.ApplicationModel.DataTransfer;
-using Microsoft.Maui.Controls;
 
 namespace Samples.ViewModel
 {
@@ -13,9 +13,9 @@ namespace Samples.ViewModel
 
 		public ClipboardViewModel()
 		{
-			CopyCommand = new Command(OnCopy);
-			PasteCommand = new Command(OnPaste);
-			CheckCommand = new Command(OnCheck);
+			CopyCommand = new RelayCommand(OnCopy);
+			PasteCommand = new RelayCommand(OnPaste);
+			CheckCommand = new RelayCommand(OnCheck);
 		}
 
 		public ICommand CopyCommand { get; }

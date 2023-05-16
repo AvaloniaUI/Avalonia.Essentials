@@ -1,6 +1,6 @@
 namespace Samples.View
 {
-	public partial class ContactDetailsPage
+	public partial class ContactDetailsPage : BasePage
 	{
 		public ContactDetailsPage()
 		{

@@ -1,44 +1,45 @@
-<views:BasePage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-                xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+<views:BasePage xmlns="https://github.com/avaloniaui"
+                xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                 xmlns:views="clr-namespace:Samples.View"
                 xmlns:viewmodels="clr-namespace:Samples.ViewModel"
                 x:Class="Samples.View.GeolocationPage"
-                Title="Geolocation">
-    <views:BasePage.BindingContext>
+                Title="Geolocation"
+                x:DataType="viewmodels:GeolocationViewModel">
+    <views:BasePage.DataContext>
         <viewmodels:GeolocationViewModel />
-    </views:BasePage.BindingContext>
+    </views:BasePage.DataContext>
 
     <Grid RowDefinitions="Auto,*">
-        <Label Text="Quickly get the current location." FontAttributes="Bold" Margin="12" />
+        <TextBlock Text="Quickly get the current location." FontWeight="Bold" Margin="12" />
 
-        <ScrollView Grid.Row="1">
-            <StackLayout Padding="12,0,12,12" Spacing="6">
-                <ActivityIndicator IsVisible="{Binding IsBusy}" IsRunning="{Binding IsBusy}" />
+        <ScrollViewer Grid.Row="1">
+            <StackPanel Margin="12,0,12,12" Spacing="6">
+                <ProgressBar IsVisible="{Binding IsBusy}" IsIndeterminate="{Binding IsBusy}" />
 
-                <Label Text="Last Known Location:" FontAttributes="Bold" Margin="0,6,0,0" />
-                <Label Text="{Binding LastLocation}" />
-                <Button Text="Refresh" Command="{Binding GetLastLocationCommand}" IsEnabled="{Binding IsNotBusy}" />
+                <TextBlock Text="Last Known Location:" FontWeight="Bold" Margin="0,6,0,0" />
+                <TextBlock Text="{Binding LastLocation}" />
+                <Button Content="Refresh" Command="{Binding GetLastLocationCommand}" IsEnabled="{Binding IsNotBusy}" />
 
-                <Label Text="Current Location:" FontAttributes="Bold" Margin="0,6,0,0" />
-                <Label Text="{Binding CurrentLocation}" />
-                <Label Text="Accuracy:" />
-                <Picker ItemsSource="{Binding Accuracies}"
+                <TextBlock Text="Current Location:" FontWeight="Bold" Margin="0,6,0,0" />
+                <TextBlock Text="{Binding CurrentLocation}" />
+                <TextBlock Text="Accuracy:" />
+                <ComboBox ItemsSource="{Binding Accuracies}"
                         SelectedIndex="{Binding Accuracy, Mode=TwoWay}"
                         IsEnabled="{Binding IsNotBusy}"
-                        HorizontalOptions="FillAndExpand" />
-                <Button Text="Refresh" Command="{Binding GetCurrentLocationCommand}" IsEnabled="{Binding IsNotBusy}" />
+                        HorizontalAlignment="Stretch" />
+                <Button Content="Refresh" Command="{Binding GetCurrentLocationCommand}" IsEnabled="{Binding IsNotBusy}" />
 
-                <Label Text="Foreground listener for Location:" FontAttributes="Bold" Margin="0,6,0,0" />
-                <StackLayout Orientation="Horizontal" Spacing="6">
-                    <Button Text="Start Listening" HorizontalOptions="FillAndExpand"
+                <TextBlock Text="Foreground listener for Location:" FontWeight="Bold" Margin="0,6,0,0" />
+                <StackPanel Orientation="Horizontal" Spacing="6">
+                    <Button Content="Start Listening" HorizontalAlignment="Stretch"
                             Command="{Binding StartListeningCommand}" IsEnabled="{Binding IsNotListening}" />
-                    <Button Text="Stop listening" HorizontalOptions="FillAndExpand"
+                    <Button Content="Stop listening" HorizontalAlignment="Stretch"
                             Command="{Binding StopListeningCommand}" IsEnabled="{Binding IsListening}" />
-                </StackLayout>
-                <Label Text="{Binding ListeningLocationStatus}" />
-                <Label Text="{Binding ListeningLocation}" />
-            </StackLayout>
-        </ScrollView>
+                </StackPanel>
+                <TextBlock Text="{Binding ListeningLocationStatus}" />
+                <TextBlock Text="{Binding ListeningLocation}" />
+            </StackPanel>
+        </ScrollViewer>
     </Grid>
 
 </views:BasePage>

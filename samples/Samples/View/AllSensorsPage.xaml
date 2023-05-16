@@ -1,169 +1,169 @@
-<views:BasePage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+<views:BasePage xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:viewmodels="clr-namespace:Samples.ViewModel"
              xmlns:views="clr-namespace:Samples.View"
              x:Class="Samples.View.AllSensorsPage"
              Title="All Sensors">
 
     <Grid RowDefinitions="Auto,*">
-        <Label Text="Have a look at the accelerometer, compass, gyroscope and magnetometer." FontAttributes="Bold" Margin="12" />
+        <TextBlock Text="Have a look at the accelerometer, compass, gyroscope and magnetometer." FontWeight="Bold" Margin="12" />
 
-        <ScrollView Grid.Row="1">
-            <StackLayout Padding="0,0,0,12" Spacing="6">
+        <ScrollViewer Grid.Row="1">
+            <StackPanel Margin="0,0,0,12" Spacing="6">
 
-                <Label Text="Accelerometer" FontAttributes="Bold" Margin="12" />
-                <Grid x:Name="GridAccelerometer">
-                    <Grid.BindingContext>
+                <TextBlock Text="Accelerometer" FontWeight="Bold" Margin="12" />
+                <Grid x:Name="GridAccelerometer" x:DataType="viewmodels:AccelerometerViewModel">
+                    <Grid.DataContext>
                         <viewmodels:AccelerometerViewModel />
-                    </Grid.BindingContext>
-                    <Grid Padding="12,0,12,12" ColumnDefinitions="*,*" RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,Auto">
-                        <Label Grid.Row="0" Grid.ColumnSpan="2" Text="{Binding X, StringFormat='X: {0:N}'}" />
-                        <Label Grid.Row="1" Grid.ColumnSpan="2" Text="{Binding Y, StringFormat='Y: {0:N}'}" />
-                        <Label Grid.Row="2" Grid.ColumnSpan="2" Text="{Binding Z, StringFormat='Z: {0:N}'}" />
+                    </Grid.DataContext>
+                    <Grid Margin="12,0,12,12" ColumnDefinitions="*,*" RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,Auto">
+                        <TextBlock Grid.Row="0" Grid.ColumnSpan="2" Text="{Binding X, StringFormat='X: {0:N}'}" />
+                        <TextBlock Grid.Row="1" Grid.ColumnSpan="2" Text="{Binding Y, StringFormat='Y: {0:N}'}" />
+                        <TextBlock Grid.Row="2" Grid.ColumnSpan="2" Text="{Binding Z, StringFormat='Z: {0:N}'}" />
 
-                        <Picker Grid.Row="4" Grid.ColumnSpan="2" HorizontalOptions="FillAndExpand"
+                        <ComboBox Grid.Row="4" Grid.ColumnSpan="2" HorizontalAlignment="Stretch"
                                 ItemsSource="{Binding Speeds}" 
                                 SelectedIndex="{Binding Speed, Mode=TwoWay}"
                                 IsEnabled="{Binding IsActive, Converter={StaticResource NegativeConverter}}" />
 
-                        <Button Grid.Row="5" Grid.Column="0" Text="Start" Command="{Binding StartCommand}"
+                        <Button Grid.Row="5" Grid.Column="0" Content="Start" Command="{Binding StartCommand}"
                                 IsEnabled="{Binding IsActive, Converter={StaticResource NegativeConverter}}" />
 
-                        <Button Grid.Row="5" Grid.Column="1" Text="Stop" Command="{Binding StopCommand}"
+                        <Button Grid.Row="5" Grid.Column="1" Content="Stop" Command="{Binding StopCommand}"
                                 IsEnabled="{Binding IsActive}" />
 
-                        <Label Grid.Row="6" Grid.ColumnSpan="2" Text="{Binding ShakeTime}"/>
+                        <TextBlock Grid.Row="6" Grid.ColumnSpan="2" Text="{Binding ShakeTime}"/>
                     </Grid>
                 </Grid>
 
-                <Label Text="Barometer" FontAttributes="Bold" Margin="12" />
-                <Grid x:Name="GridBarometer">
-                    <Grid.BindingContext>
+                <TextBlock Text="Barometer" FontWeight="Bold" Margin="12" />
+                <Grid x:Name="GridBarometer" x:DataType="viewmodels:BarometerViewModel">
+                    <Grid.DataContext>
                         <viewmodels:BarometerViewModel />
-                    </Grid.BindingContext>
-                    <Grid Padding="12,0,12,12" RowDefinitions="Auto,Auto,Auto,Auto" ColumnDefinitions="*,*">
-                        <Label Grid.Row="0" Grid.ColumnSpan="2"
+                    </Grid.DataContext>
+                    <Grid Margin="12,0,12,12" RowDefinitions="Auto,Auto,Auto,Auto" ColumnDefinitions="*,*">
+                        <TextBlock Grid.Row="0" Grid.ColumnSpan="2"
                                Text="{Binding Pressure, StringFormat='Barometer pressure (hPA): {0:N}'}" />
 
-                        <Label Grid.Row="1" Grid.ColumnSpan="2" Text="Speed:" />
+                        <TextBlock Grid.Row="1" Grid.ColumnSpan="2" Text="Speed:" />
 
-                        <Picker Grid.Row="2" Grid.ColumnSpan="2" HorizontalOptions="FillAndExpand"
+                        <ComboBox Grid.Row="2" Grid.ColumnSpan="2" HorizontalAlignment="Stretch"
                                 ItemsSource="{Binding Speeds}" 
                                 SelectedIndex="{Binding Speed, Mode=TwoWay}"
                                 IsEnabled="{Binding IsActive, Converter={StaticResource NegativeConverter}}"
                                 Margin="0,0,0,10"/>
 
 
-                        <Button Grid.Row="3" Grid.Column="0" Text="Start" Command="{Binding StartCommand}"
+                        <Button Grid.Row="3" Grid.Column="0" Content="Start" Command="{Binding StartCommand}"
                                 IsEnabled="{Binding IsActive, Converter={StaticResource NegativeConverter}}" />
 
-                        <Button Grid.Row="3"  Grid.Column="1" Text="Stop" Command="{Binding StopCommand}"
+                        <Button Grid.Row="3"  Grid.Column="1" Content="Stop" Command="{Binding StopCommand}"
                                 IsEnabled="{Binding IsActive}" />
                     </Grid>
                 </Grid>
 
-                <Label Text="Compass" FontAttributes="Bold" Margin="12" />
-                <Grid x:Name="GridCompass">
-                    <Grid.BindingContext>
+                <TextBlock Text="Compass" FontWeight="Bold" Margin="12" />
+                <Grid x:Name="GridCompass" x:DataType="viewmodels:CompassViewModel">
+                    <Grid.DataContext>
                         <viewmodels:CompassViewModel />
-                    </Grid.BindingContext>
-                    <Grid Padding="12,0,12,12" RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto" ColumnDefinitions="*,*">
-                        <Label Grid.Row="0" Grid.ColumnSpan="2"
+                    </Grid.DataContext>
+                    <Grid Margin="12,0,12,12" RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto" ColumnDefinitions="*,*">
+                        <TextBlock Grid.Row="0" Grid.ColumnSpan="2"
                                Text="{Binding Heading, StringFormat='Heading (degrees): {0:N}'}" />
 
-                        <Label Grid.Row="1" Grid.ColumnSpan="2" Text="Speed:" />
+                        <TextBlock Grid.Row="1" Grid.ColumnSpan="2" Text="Speed:" />
 
-                        <Picker Grid.Row="2" Grid.ColumnSpan="2" HorizontalOptions="FillAndExpand"
+                        <ComboBox Grid.Row="2" Grid.ColumnSpan="2" HorizontalAlignment="Stretch"
                                 ItemsSource="{Binding Speeds}" 
                                 SelectedIndex="{Binding Speed, Mode=TwoWay}"
                                 IsEnabled="{Binding IsActive, Converter={StaticResource NegativeConverter}}"
                                 Margin="0,0,0,10"/>
 
-                        <Label Grid.Row="3" Grid.ColumnSpan="2" Text="Apply low pass filter:" />
+                        <TextBlock Grid.Row="3" Grid.ColumnSpan="2" Text="Apply low pass filter:" />
 
-                        <Switch Grid.Row="4" Grid.ColumnSpan="2"
-                                IsToggled="{Binding ApplyLowPassFilter}" />
+                        <ToggleSwitch Grid.Row="4" Grid.ColumnSpan="2"
+                                IsChecked="{Binding ApplyLowPassFilter}" />
 
-                        <Button Grid.Row="5" Grid.Column="0" Text="Start" Command="{Binding StartCommand}"
+                        <Button Grid.Row="5" Grid.Column="0" Content="Start" Command="{Binding StartCommand}"
                                 IsEnabled="{Binding IsActive, Converter={StaticResource NegativeConverter}}" />
 
-                        <Button Grid.Row="5"  Grid.Column="1" Text="Stop" Command="{Binding StopCommand}"
+                        <Button Grid.Row="5"  Grid.Column="1" Content="Stop" Command="{Binding StopCommand}"
                                 IsEnabled="{Binding IsActive}" />
                     </Grid>
                 </Grid>
 
-                <Label Text="Gyroscope" FontAttributes="Bold" Margin="12" />
-                <Grid x:Name="GridGyro">
-                    <Grid.BindingContext>
+                <TextBlock Text="Gyroscope" FontWeight="Bold" Margin="12" />
+                <Grid x:Name="GridGyro" x:DataType="viewmodels:GyroscopeViewModel">
+                    <Grid.DataContext>
                         <viewmodels:GyroscopeViewModel />
-                    </Grid.BindingContext>
-                    <Grid Padding="12,0,12,12" RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto" ColumnDefinitions="*,*">
-                        <Label Grid.Row="0" Grid.ColumnSpan="2" Text="{Binding X, StringFormat='X: {0:N}'}" />
-                        <Label Grid.Row="1" Grid.ColumnSpan="2" Text="{Binding Y, StringFormat='Y: {0:N}'}" />
-                        <Label Grid.Row="2" Grid.ColumnSpan="2" Text="{Binding Z, StringFormat='Z: {0:N}'}" />
+                    </Grid.DataContext>
+                    <Grid Margin="12,0,12,12" RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto" ColumnDefinitions="*,*">
+                        <TextBlock Grid.Row="0" Grid.ColumnSpan="2" Text="{Binding X, StringFormat='X: {0:N}'}" />
+                        <TextBlock Grid.Row="1" Grid.ColumnSpan="2" Text="{Binding Y, StringFormat='Y: {0:N}'}" />
+                        <TextBlock Grid.Row="2" Grid.ColumnSpan="2" Text="{Binding Z, StringFormat='Z: {0:N}'}" />
 
-                        <Picker Grid.Row="4" Grid.ColumnSpan="2" HorizontalOptions="FillAndExpand"
+                        <ComboBox Grid.Row="4" Grid.ColumnSpan="2" HorizontalAlignment="Stretch"
                                 ItemsSource="{Binding Speeds}" 
                                 SelectedIndex="{Binding Speed, Mode=TwoWay}"
                                 IsEnabled="{Binding IsActive, Converter={StaticResource NegativeConverter}}" />
 
-                        <Button Grid.Row="5" Grid.Column="0" Text="Start" Command="{Binding StartCommand}"
+                        <Button Grid.Row="5" Grid.Column="0" Content="Start" Command="{Binding StartCommand}"
                                 IsEnabled="{Binding IsActive, Converter={StaticResource NegativeConverter}}" />
 
-                        <Button Grid.Row="5" Grid.Column="1" Text="Stop" Command="{Binding StopCommand}"
+                        <Button Grid.Row="5" Grid.Column="1" Content="Stop" Command="{Binding StopCommand}"
                                 IsEnabled="{Binding IsActive}" />
                     </Grid>
                 </Grid>
 
-                <Label Text="Magnetometer" FontAttributes="Bold" Margin="12" />
-                <Grid x:Name="GridMagnetometer">
-                    <Grid.BindingContext>
+                <TextBlock Text="Magnetometer" FontWeight="Bold" Margin="12" />
+                <Grid x:Name="GridMagnetometer" x:DataType="viewmodels:MagnetometerViewModel">
+                    <Grid.DataContext>
                         <viewmodels:MagnetometerViewModel />
-                    </Grid.BindingContext>
-                    <Grid Padding="12,0,12,12" RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto" ColumnDefinitions="*,*">
+                    </Grid.DataContext>
+                    <Grid Margin="12,0,12,12" RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto" ColumnDefinitions="*,*">
 
-                        <Label Grid.Row="0" Grid.ColumnSpan="2" Text="{Binding X, StringFormat='X: {0:N}'}" />
-                        <Label Grid.Row="1" Grid.ColumnSpan="2" Text="{Binding Y, StringFormat='Y: {0:N}'}" />
-                        <Label Grid.Row="2" Grid.ColumnSpan="2" Text="{Binding Z, StringFormat='Z: {0:N}'}" />
+                        <TextBlock Grid.Row="0" Grid.ColumnSpan="2" Text="{Binding X, StringFormat='X: {0:N}'}" />
+                        <TextBlock Grid.Row="1" Grid.ColumnSpan="2" Text="{Binding Y, StringFormat='Y: {0:N}'}" />
+                        <TextBlock Grid.Row="2" Grid.ColumnSpan="2" Text="{Binding Z, StringFormat='Z: {0:N}'}" />
 
-                        <Picker Grid.Row="4" Grid.ColumnSpan="2" HorizontalOptions="FillAndExpand"
+                        <ComboBox Grid.Row="4" Grid.ColumnSpan="2" HorizontalAlignment="Stretch"
                                 ItemsSource="{Binding Speeds}" 
                                 SelectedIndex="{Binding Speed, Mode=TwoWay}"
                                 IsEnabled="{Binding IsActive, Converter={StaticResource NegativeConverter}}" />
 
-                        <Button Grid.Row="5" Grid.Column="0" Text="Start" Command="{Binding StartCommand}"
+                        <Button Grid.Row="5" Grid.Column="0" Content="Start" Command="{Binding StartCommand}"
                                 IsEnabled="{Binding IsActive, Converter={StaticResource NegativeConverter}}" />
 
-                        <Button Grid.Row="5" Grid.Column="1" Text="Stop" Command="{Binding StopCommand}"
+                        <Button Grid.Row="5" Grid.Column="1" Content="Stop" Command="{Binding StopCommand}"
                                 IsEnabled="{Binding IsActive}" />
                     </Grid>
                 </Grid>
 
-                <Label Text="Orientation Sensor" FontAttributes="Bold" Margin="12" />
-                <Grid x:Name="GridOrientation">
-                    <Grid.BindingContext>
+                <TextBlock Text="Orientation Sensor" FontWeight="Bold" Margin="12" />
+                <Grid x:Name="GridOrientation" x:DataType="viewmodels:OrientationSensorViewModel">
+                    <Grid.DataContext>
                         <viewmodels:OrientationSensorViewModel />
-                    </Grid.BindingContext>
-                    <Grid Padding="12,0,12,12" RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,Auto" ColumnDefinitions="*,*">
-                        <Label Grid.Row="0" Grid.ColumnSpan="2" Text="{Binding X, StringFormat='X: {0:N}'}" />
-                        <Label Grid.Row="1" Grid.ColumnSpan="2" Text="{Binding Y, StringFormat='Y: {0:N}'}" />
-                        <Label Grid.Row="2" Grid.ColumnSpan="2" Text="{Binding Z, StringFormat='Z: {0:N}'}" />
-                        <Label Grid.Row="3" Grid.ColumnSpan="2" Text="{Binding W, StringFormat='W: {0:N}'}" />
+                    </Grid.DataContext>
+                    <Grid Margin="12,0,12,12" RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,Auto" ColumnDefinitions="*,*">
+                        <TextBlock Grid.Row="0" Grid.ColumnSpan="2" Text="{Binding X, StringFormat='X: {0:N}'}" />
+                        <TextBlock Grid.Row="1" Grid.ColumnSpan="2" Text="{Binding Y, StringFormat='Y: {0:N}'}" />
+                        <TextBlock Grid.Row="2" Grid.ColumnSpan="2" Text="{Binding Z, StringFormat='Z: {0:N}'}" />
+                        <TextBlock Grid.Row="3" Grid.ColumnSpan="2" Text="{Binding W, StringFormat='W: {0:N}'}" />
 
-                        <Picker Grid.Row="4" Grid.ColumnSpan="2" HorizontalOptions="FillAndExpand"
+                        <ComboBox Grid.Row="4" Grid.ColumnSpan="2" HorizontalAlignment="Stretch"
                                 ItemsSource="{Binding Speeds}" 
                                 SelectedIndex="{Binding Speed, Mode=TwoWay}"
                                 IsEnabled="{Binding IsActive, Converter={StaticResource NegativeConverter}}" />
 
-                        <Button Grid.Row="5" Grid.Column="0" Text="Start" Command="{Binding StartCommand}"
+                        <Button Grid.Row="5" Grid.Column="0" Content="Start" Command="{Binding StartCommand}"
                                 IsEnabled="{Binding IsActive, Converter={StaticResource NegativeConverter}}" />
 
-                        <Button Grid.Row="5" Grid.Column="1" Text="Stop" Command="{Binding StopCommand}"
+                        <Button Grid.Row="5" Grid.Column="1" Content="Stop" Command="{Binding StopCommand}"
                                 IsEnabled="{Binding IsActive}" />
                     </Grid>
                 </Grid>
-            </StackLayout>
-        </ScrollView>
+            </StackPanel>
+        </ScrollViewer>
     </Grid>
 
 </views:BasePage>

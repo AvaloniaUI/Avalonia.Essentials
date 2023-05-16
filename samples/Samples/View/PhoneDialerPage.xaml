@@ -1,23 +1,24 @@
-<views:BasePage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+<views:BasePage xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:views="clr-namespace:Samples.View"
              xmlns:viewmodels="clr-namespace:Samples.ViewModel"
              x:Class="Samples.View.PhoneDialerPage"
-             Title="PhoneDialer">
-    <views:BasePage.BindingContext>
+             Title="PhoneDialer"
+             x:DataType="viewmodels:PhoneDialerViewModel">
+    <views:BasePage.DataContext>
         <viewmodels:PhoneDialerViewModel />
-    </views:BasePage.BindingContext>
+    </views:BasePage.DataContext>
 
     <Grid RowDefinitions="Auto,*">
-        <Label Text="Easily open the phone dialer." FontAttributes="Bold" Margin="12" />
+        <TextBlock Text="Easily open the phone dialer." FontWeight="Bold" Margin="12" />
 
-        <ScrollView Grid.Row="1">
-            <StackLayout Padding="12,0,12,12" Spacing="6">
-                <Label Text="Phone number:" />
-                <Entry Text="{Binding PhoneNumber}" Keyboard="Telephone" />
-                <Button Text="Open Phone Dialer" Command="{Binding OpenPhoneDialerCommand}" IsEnabled="{Binding IsEnabled}" />
-            </StackLayout>
-        </ScrollView>
+        <ScrollViewer Grid.Row="1">
+            <StackPanel Margin="12,0,12,12" Spacing="6">
+                <TextBlock Text="Phone number:" />
+                <TextBox Text="{Binding PhoneNumber}" TextInputOptions.ContentType="Number" />
+                <Button Content="Open Phone Dialer" Command="{Binding OpenPhoneDialerCommand}" />
+            </StackPanel>
+        </ScrollViewer>
     </Grid>
 
 </views:BasePage>
