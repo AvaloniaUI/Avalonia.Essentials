@@ -146,11 +146,11 @@ namespace Samples.ViewModel
 				IsBusy = false;
 			}
 
-			Microsoft.Maui.Essentials.Color GetColor(int index)
+			Microsoft.Maui.Color GetColor(int index)
 			{
 				if (index <= 0) return default;
 				var color = colorDictionary[AllColors[index]];
-				return new Microsoft.Maui.Essentials.Color(color.A * 255f, color.R * 255f, color.G * 255f, color.B * 255f);
+				return new Microsoft.Maui.Color(color.A * 255f, color.R * 255f, color.G * 255f, color.B * 255f);
 			}
 		}
 	}

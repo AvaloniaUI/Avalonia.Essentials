@@ -5,6 +5,7 @@
     <IsPackable>false</IsPackable>
     <NoWarn>$(NoWarn),CA1416</NoWarn>
     <AvaloniaUseCompiledBindingsByDefault>true</AvaloniaUseCompiledBindingsByDefault>
+    <RootNamespace>Essentials.Sample</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>
