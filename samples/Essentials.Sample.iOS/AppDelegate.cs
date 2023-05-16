@@ -1,6 +1,7 @@
 using Foundation;
 using Avalonia;
 using Avalonia.iOS;
+using Microsoft.Maui.ApplicationModel;
 using Samples;
 
 namespace Essentials.Sample.iOS;
@@ -14,6 +15,7 @@ public partial class AppDelegate : AvaloniaAppDelegate<App>
     protected override AppBuilder CustomizeAppBuilder(AppBuilder builder)
     {
         return base.CustomizeAppBuilder(builder)
+	        .AfterSetup(_ => Platform.Init(() => Window.RootViewController!))
             .WithInterFont();
     }
 }
