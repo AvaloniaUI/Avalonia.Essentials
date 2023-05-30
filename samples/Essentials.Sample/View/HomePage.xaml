@@ -15,7 +15,7 @@
 
     <controls:MasterDetailPage>
       <controls:MasterDetailPage.Master>
-        <DockPanel>
+        <DockPanel Margin="5">
           <TextBox DockPanel.Dock="Top"
                    Text="{Binding FilterText}"
                    HorizontalAlignment="Stretch" />
