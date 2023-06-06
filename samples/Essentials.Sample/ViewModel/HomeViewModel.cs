@@ -62,6 +62,12 @@ namespace Samples.ViewModel
 					"Quickly and easily use the clipboard.",
 					new[] { "clipboard", "copy", "paste" }),
 				new SampleItem(
+					"📷",
+					"Camera",
+					typeof(CameraPage),
+					"Quickly and easily use the camera.",
+					new[] { "camera", "photo", "video" }),
+				new SampleItem(
 					"🎨",
 					"Color Converters",
 					typeof(ColorConvertersPage),

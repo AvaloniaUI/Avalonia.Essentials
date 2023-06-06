@@ -1,10 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Essentials", "src\Essentials.csproj", "{05CE7951-012C-40C1-A653-59CD477201A7}"
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.33424.131
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Essentials", "src\Essentials.csproj", "{05CE7951-012C-40C1-A653-59CD477201A7}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{8EE3806F-4E4D-495C-9D6A-1B9CF081B595}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Essentials.UnitTests", "test\UnitTests\Essentials.UnitTests.csproj", "{1BE416C0-801B-41CA-9894-E60A2EE7993E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Essentials.UnitTests", "test\UnitTests\Essentials.UnitTests.csproj", "{1BE416C0-801B-41CA-9894-E60A2EE7993E}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Samples", "Samples", "{865B98D3-A1CF-4C7C-A827-745D93ED80A6}"
 	ProjectSection(SolutionItems) = preProject
@@ -20,22 +23,22 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		.gitignore = .gitignore
 		CODE_OF_CONDUCT.md = CODE_OF_CONDUCT.md
 		Directory.Build.props = Directory.Build.props
+		global.json = global.json
 		LICENSE.txt = LICENSE.txt
 		THIRD-PARTY-NOTICES.TXT = THIRD-PARTY-NOTICES.TXT
-		global.json = global.json
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Submodules", "Submodules", "{9246A9AD-0210-4785-BAB2-13DB946AE6AB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Avalonia.Labs.Controls", "submodules\Avalonia.Labs\src\Avalonia.Labs.Controls\Avalonia.Labs.Controls.csproj", "{0FD667D2-F70F-4711-AEBA-57033E1BA700}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Avalonia.Labs.Controls", "submodules\Avalonia.Labs\src\Avalonia.Labs.Controls\Avalonia.Labs.Controls.csproj", "{0FD667D2-F70F-4711-AEBA-57033E1BA700}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Essentials.Sample.Desktop", "samples\Essentials.Sample.Desktop\Essentials.Sample.Desktop.csproj", "{48DC0763-200B-4622-961F-6C6BA59B72C2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Essentials.Sample.Desktop", "samples\Essentials.Sample.Desktop\Essentials.Sample.Desktop.csproj", "{48DC0763-200B-4622-961F-6C6BA59B72C2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Essentials.Sample.Android", "samples\Essentials.Sample.Android\Essentials.Sample.Android.csproj", "{AA22E3A4-34C4-464C-8C39-2C8E653A3E26}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Essentials.Sample.Android", "samples\Essentials.Sample.Android\Essentials.Sample.Android.csproj", "{AA22E3A4-34C4-464C-8C39-2C8E653A3E26}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Essentials.Sample.iOS", "samples\Essentials.Sample.iOS\Essentials.Sample.iOS.csproj", "{1E3632EA-8C11-42E5-BDEB-E2087F752CD0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Essentials.Sample.iOS", "samples\Essentials.Sample.iOS\Essentials.Sample.iOS.csproj", "{1E3632EA-8C11-42E5-BDEB-E2087F752CD0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Essentials.Sample", "samples\Essentials.Sample\Essentials.Sample.csproj", "{7C8D9FDC-55E7-4670-B7F7-196050F66213}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Essentials.Sample", "samples\Essentials.Sample\Essentials.Sample.csproj", "{7C8D9FDC-55E7-4670-B7F7-196050F66213}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -61,6 +64,7 @@ Global
 		{48DC0763-200B-4622-961F-6C6BA59B72C2}.Release|Any CPU.Build.0 = Release|Any CPU
 		{AA22E3A4-34C4-464C-8C39-2C8E653A3E26}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{AA22E3A4-34C4-464C-8C39-2C8E653A3E26}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AA22E3A4-34C4-464C-8C39-2C8E653A3E26}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
 		{AA22E3A4-34C4-464C-8C39-2C8E653A3E26}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AA22E3A4-34C4-464C-8C39-2C8E653A3E26}.Release|Any CPU.Build.0 = Release|Any CPU
 		{1E3632EA-8C11-42E5-BDEB-E2087F752CD0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -71,6 +75,9 @@ Global
 		{7C8D9FDC-55E7-4670-B7F7-196050F66213}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7C8D9FDC-55E7-4670-B7F7-196050F66213}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7C8D9FDC-55E7-4670-B7F7-196050F66213}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{1BE416C0-801B-41CA-9894-E60A2EE7993E} = {8EE3806F-4E4D-495C-9D6A-1B9CF081B595}

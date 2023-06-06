@@ -1,4 +1,5 @@
-﻿using Android.App;
+﻿using System;
+using Android.App;
 using Android.Content;
 using Android.Content.PM;
 using Android.OS;
@@ -16,8 +17,13 @@ public class MainActivity : AvaloniaMainActivity
 		base.OnCreate(savedInstanceState);
 		Platform.Init(this, savedInstanceState);
 		Platform.ActivityStateChanged += Platform_ActivityStateChanged;
+		AppDomain.CurrentDomain.UnhandledException += CurrentDomainUnhandledException;
 	}
-	
+
+	private void CurrentDomainUnhandledException(object sender, UnhandledExceptionEventArgs e)
+	{
+	}
+
 	protected override void OnResume()
 	{
 		base.OnResume();

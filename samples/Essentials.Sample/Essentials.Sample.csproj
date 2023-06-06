@@ -6,13 +6,15 @@
     <NoWarn>$(NoWarn),CA1416</NoWarn>
     <AvaloniaUseCompiledBindingsByDefault>true</AvaloniaUseCompiledBindingsByDefault>
     <RootNamespace>Essentials.Sample</RootNamespace>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
 
   <ItemGroup>
-    <AvaloniaXaml Include="**\*.xaml" SubType="Designer" />
+    <AvaloniaXaml Include="**\*.xaml" />
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="Avalonia.Skia" Version="$(AvaloniaVersion)" />
     <PackageReference Include="CommunityToolkit.Mvvm" Version="8.1.0" />
     <PackageReference Include="Avalonia" Version="$(AvaloniaVersion)" />
     <PackageReference Include="Avalonia.Themes.Fluent" Version="$(AvaloniaVersion)" />
@@ -22,5 +24,9 @@
   <ItemGroup>
     <ProjectReference Include="..\..\src\Essentials.csproj" />
     <ProjectReference Include="..\..\submodules\Avalonia.Labs\src\Avalonia.Labs.Controls\Avalonia.Labs.Controls.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Controls\" />
   </ItemGroup>
 </Project>
